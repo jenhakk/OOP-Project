@@ -2,6 +2,8 @@ package app;
 
 import java.util.ArrayList;
 
+import data.Tietokanta;
+
 public class Kayttaja {
 
 	//Listat varastolle ja ostoskorille
@@ -53,11 +55,7 @@ class Yllapito extends Asiakas {
 	private void tulostaVarasto()
 	
 	{
-		for (int i=0; i<tuotteet.size(); i++)
-			
-		{
-			System.out.println(tuotteet.get(i));
-		}
+		Tietokanta.haeTuotteet();
 	}
 	
 	//muuttaa yksittäisen tuotteen hintaa

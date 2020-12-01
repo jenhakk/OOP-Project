@@ -33,7 +33,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 		
-		// Tietokannan taulun kentï¿½t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 		int id;
 		String nimi;
 		String kuvaus;
@@ -44,20 +44,20 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT * FROM ryhmï¿½1_tuotteet";
+			String querySelect = "SELECT * FROM ryhmä1_tuotteet";
 			
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 			
-			// Vastauksen kï¿½sittely
-			System.out.println("tuoteID\tTuote\tKuvaus\tHinta ï¿½");
+			// Vastauksen käsittely
+			System.out.println("tuoteID\tTuote\tHinta €\tKuvaus");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
 				nimi = resultSet.getString("nimi");
 				kuvaus = resultSet.getString("kuvaus");
 				hinta = resultSet.getDouble("hinta");
-				System.out.println(id + "\t" + nimi + "\t" + kuvaus + "\t" + hinta);
+				System.out.println(id + "\t" + nimi + "\t" + hinta + "\t" + kuvaus);
 			}
 			
 		} catch (Exception ex) {
