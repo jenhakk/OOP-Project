@@ -17,7 +17,7 @@ public class Verkkokauppa {
 			vastaus = input.nextLine();
 			
 			if (!vastaus.equalsIgnoreCase("a") && !vastaus.equalsIgnoreCase("y")) {
-				System.out.println("virheellinen syöte, yritä uudelleen.");
+				System.out.println("Virheellinen syöte, yritä uudelleen.");
 			}
 			
 		} while (!vastaus.equalsIgnoreCase("a") && !vastaus.equalsIgnoreCase("y"));
@@ -37,7 +37,18 @@ public class Verkkokauppa {
 			
 			Yllapito Yllapito = new Yllapito();
 			
-			// kirjautuminen?
+			// kirjautuminen: kovakoodattu md5 hash
+			String vastauscrypt;
+			System.out.println("Anna pin-koodi: ");
+			
+			do {
+					vastaus = input.nextLine();
+					vastauscrypt = Yllapito.crypt(vastaus);
+					if (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055")) {
+						System.out.println("Väärä pin-koodi, yritä uudelleen: ");
+					}
+				} while (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055"));
+			
 			
 			System.out.println("Mitä haluaisit tehdä?");
 			System.out.println("Tulosta varasto: valitse (T)");
@@ -60,7 +71,7 @@ public class Verkkokauppa {
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
-						System.out.println("virheellinen syöte, yritä uudelleen.");
+						System.out.println("Virheellinen syöte, yritä uudelleen.");
 					}
 					
 				} while (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l"));
