@@ -11,10 +11,10 @@ public class Kayttaja {
 	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
 	
-	private String nimi;
-	private String kuvaus;
-	private double hinta;
-	private int tuotenro;
+	protected String nimi;
+	protected String kuvaus;
+	protected double hinta;
+	protected int tuotenro;
 	// private int kpl;
 	
 	
@@ -26,11 +26,17 @@ class Asiakas extends Kayttaja {
 	
 	int i;
 	
+	protected void naytaTuotteet()
+	{
+		Tietokanta.haeTuotteet();
+	}
+	
+	
 	//N‰ytt‰‰ yksitt‰isen tuotteen tarkemmat tiedot, esim. kuvauksen
-	protected void naytaTuotteenTiedot()
+	protected void naytaTuotteenTiedot(int tuotenro)
 	
 	{
-		tuotteet.get(i).tulostaTiedot();
+		Tietokanta.naytaTuotteenKuvaus(tuotenro);
 	}
 	
 	//Lis‰‰ tuotteen ostoskoriin
@@ -52,14 +58,14 @@ class Yllapito extends Asiakas {
 	
 	
 	//tulostaa varaston tiedot
-	private void tulostaVarasto()
+	protected void tulostaVarasto()
 	
 	{
 		Tietokanta.haeTuotteet();
 	}
 	
 	//muuttaa yksitt‰isen tuotteen hintaa
-	private void muutaHintaa()
+	protected void muutaHintaa(double hinta, int tuotenro)
 
 	{
 		
@@ -67,9 +73,11 @@ class Yllapito extends Asiakas {
 	
 	
 	//Lis‰‰ yksitt‰isen tuotteen varastoon
-	private void lisaaTuote()
+	protected void lisaaTuote()
 	
 	{
 		tuotteet.add(tuote);
 	}
+
+	
 }
