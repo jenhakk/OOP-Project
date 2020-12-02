@@ -52,6 +52,16 @@ class Asiakas extends Kayttaja {
 	{
 		double summa;
 	}
+	
+	protected void naytaOstoskori()
+	{
+		for (int i=0; i<ostoskori.size(); i++)
+			
+		{
+			ostoskori.get(i).tulostaTiedot();
+			System.out.println();
+		}
+	}
 }
 
 class Yllapito extends Asiakas {
@@ -73,7 +83,7 @@ class Yllapito extends Asiakas {
 	
 	
 	//Lisää yksittäisen tuotteen varastoon
-	protected void lisaaTuote()
+	protected void lisaaUusiTuote()
 	
 	{
 		tuotteet.add(tuote);
