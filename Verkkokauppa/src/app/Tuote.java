@@ -28,9 +28,9 @@ public class Tuote {
 	public void tulostaTiedot() {
 		
 		System.out.println("Nimi: " + nimi);
-		System.out.println("Kuvaus: " + kuvaus);
+		//System.out.println("Kuvaus: " + kuvaus);
 		System.out.println("Hinta: " + hinta);
-		System.out.println("Tuote nro: " + tuotenro);
+		//System.out.println("Tuote nro: " + tuotenro);
 	}
 }
 
@@ -44,11 +44,10 @@ class Kori extends Tuote {
 		tuotenro = 0;
 	}
 	
-	public Kori(String n, double h, int t) {
+	public Kori(String n, double h) {
 		
 		nimi = n;
 		hinta = h;
-		tuotenro = t;
 	}
 }
 
