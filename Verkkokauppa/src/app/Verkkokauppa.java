@@ -33,7 +33,7 @@ public class Verkkokauppa {
 			
 
 			
-			int tuotenro = 1;
+			int tuotenro = 3;
 			
 			Asiakas.naytaTuotteenTiedot(tuotenro);
 //			Asiakas.lisaaTuoteKoriin();
@@ -84,7 +84,7 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
-						Yllapito.lisaaTuote();
+						Yllapito.lisaaUusiTuote();
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
