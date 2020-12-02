@@ -13,6 +13,10 @@ public class Verkkokauppa {
 		
 		Scanner input = new Scanner(System.in);
 		String vastaus;
+		String nimi;
+		double hinta;
+		String kuvaus;
+		int tuotenro;
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
 		System.out.println("Oletko asiakas vai yllÃ¤pito? (a/y)");
@@ -111,17 +115,30 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("m")) {
-
 						
-						double hinta = 15.00;
-						int tuotenro = 1;
+						Yllapito.tulostaVarasto();
+						System.out.println("Anna tuotenro:");
+						tuotenro = Integer.parseInt(input.nextLine());
+						System.out.println("Anna uusi hinta esim (2.50)");
+						hinta = Double.parseDouble(input.nextLine());
+						
+						//ei toimi vielä tämä 
 						Yllapito.muutaHintaa(hinta, tuotenro);
+						
+						Yllapito.tulostaVarasto();
 
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
+						System.out.println("Anna tuotteen nimi:");
+						nimi = input.nextLine();
+						System.out.println("Kirjoita tuotteen kuvaus:");
+						kuvaus = input.nextLine();
+						System.out.println("Anna tuotteen hinta (esim. 1.50)");
+						hinta = Double.parseDouble(input.nextLine());
 						
-						Tietokanta.lisaaUusiTuote("Pallo", "pyöreä", 250);
+						Yllapito.lisaaUusiTuote(nimi, kuvaus, hinta);
+						Yllapito.tulostaVarasto();
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
