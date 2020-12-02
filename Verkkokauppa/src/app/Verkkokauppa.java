@@ -6,7 +6,6 @@ import data.Tietokanta;
 public class Verkkokauppa {
 
 	public static void main(String[] args) {
-		Tietokanta.haeTuotteet(); // testi
 		
 		Scanner input = new Scanner(System.in);
 		String vastaus;
@@ -38,6 +37,7 @@ public class Verkkokauppa {
 			Yllapito Yllapito = new Yllapito();
 			
 			// kirjautuminen: kovakoodattu md5 hash
+			//pin koodi on: 1234
 			String vastauscrypt;
 			System.out.println("Anna pin-koodi: ");
 			

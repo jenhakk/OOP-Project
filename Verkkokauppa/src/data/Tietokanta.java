@@ -44,13 +44,13 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT * FROM ryhmï¿½1_tuotteet";
+			String querySelect = "SELECT * FROM ryhmä1_tuotteet";
 			
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 			
 			// Vastauksen kï¿½sittely
-			System.out.println("tuoteID\tTuote\tKuvaus\tHinta ï¿½");
+			System.out.println("tuoteID\tTuote\tKuvaus\tHinta €");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
