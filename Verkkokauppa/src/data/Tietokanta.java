@@ -33,7 +33,9 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 		
-		// Tietokannan taulun kent�t tulostusta varten
+
+		// Tietokannan taulun kentÃ¤t tulostusta varten
+
 		int id;
 		String nimi;
 		String kuvaus;
@@ -44,20 +46,25 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT * FROM ryhm�1_tuotteet";
+			String querySelect = "SELECT * FROM ryhma1_tuotteet";
 			
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 			
-			// Vastauksen k�sittely
-			System.out.println("tuoteID\tTuote\tHinta �\tKuvaus");
+
+			// Vastauksen kÃ¤sittely
+			System.out.println("tuoteID\t\tTuote\t\tHinta €\t\tKuvaus");
+
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
 				nimi = resultSet.getString("nimi");
 				kuvaus = resultSet.getString("kuvaus");
 				hinta = resultSet.getDouble("hinta");
-				System.out.println(id + "\t" + nimi + "\t" + hinta + "\t" + kuvaus);
+
+
+				System.out.println(id + "\t\t" + nimi + "\t\t" + hinta + "\t\t" + kuvaus);
+
 			}
 			
 		} catch (Exception ex) {
@@ -69,4 +76,144 @@ public class Tietokanta {
 			if (connection != null) try { connection.close(); } catch (SQLException ignore) {}
 		}
 	}
+
+
+
+public static String naytaTuotteenTiedot(int tuotenro) {
+	
+	// Ota yhteys tietokantaan
+	yhdistaTietokanta();
+	
+	// Tietokannan taulun kentÃ¤t tulostusta varten
+	int id;
+	String nimi;
+	String kuvaus;
+	double hinta;
+	String palautus = "";
+	
+	try {
+		
+		// Luo MySQL-kysely
+		statement = connection.createStatement();
+
+
+		String querySelect = "SELECT nimi, hinta FROM ryhma1_tuotteet where tuoteID =" + tuotenro ;
+
+		
+		// Suorita kysely
+		resultSet = statement.executeQuery(querySelect);
+		
+		// Vastauksen kÃ¤sittely
+		//System.out.println("Tuote\tHinta");
+
+		while (resultSet.next()) {
+			//id = resultSet.getInt("tuoteID");
+			nimi = resultSet.getString("nimi");
+			//kuvaus = resultSet.getString("kuvaus");
+			hinta = resultSet.getDouble("hinta");
+			palautus = (nimi+ ", " +hinta);
+			
+		}
+		
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		// Sulje yhteys ja nollaa kyselyt
+		if (resultSet != null) try { resultSet.close(); } catch (SQLException ignore) {}
+		if (statement != null) try { statement.close(); } catch (SQLException ignore) {}
+		if (connection != null) try { connection.close(); } catch (SQLException ignore) {}
+	}
+	return palautus;
 }
+public static void muutaHintaa(double h, int tuotenro) {
+	
+	// Ota yhteys tietokantaan
+	yhdistaTietokanta();
+	
+	// Tietokannan taulun kentÃ¤t tulostusta varten
+	int id = tuotenro;
+	String nimi;
+	String kuvaus;
+	double hinta = h;
+	
+	try {
+		
+		// Luo MySQL-kysely
+		statement = connection.createStatement();
+
+		//UPDATE `ryhmÃ¤1_tuotteet` SET `hinta` = '12' WHERE `ryhmÃ¤1_tuotteet`.`tuoteID` = 1;
+		String queryInsert = "UPDATE ryhma1_tuotteet SET hinta = " + h +" where tuoteID = 1";
+
+		System.out.println(queryInsert);
+		// Suorita kysely
+		statement.executeUpdate(queryInsert);
+		
+		// Vastauksen kÃ¤sittely
+		System.out.println("tuoteID\tTuote\tHinta €\tKuvaus");
+
+		while (resultSet.next()) {
+			id = resultSet.getInt("tuoteID");
+			nimi = resultSet.getString("nimi");
+			kuvaus = resultSet.getString("kuvaus");
+			hinta = resultSet.getDouble("hinta");
+			System.out.println(id + "\t" + nimi + "\t" + hinta + "\t" + kuvaus);
+		}
+		
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		// Sulje yhteys ja nollaa kyselyt
+		if (resultSet != null) try { resultSet.close(); } catch (SQLException ignore) {}
+		if (statement != null) try { statement.close(); } catch (SQLException ignore) {}
+		if (connection != null) try { connection.close(); } catch (SQLException ignore) {}
+	}
+}
+
+public static void lisaaUusiTuote(String n, String k, double h) {
+	
+	// Ota yhteys tietokantaan
+	yhdistaTietokanta();
+	
+	// Tietokannan taulun kentÃ¤t tulostusta varten
+	//int id = tuotenro;
+	String nimi = n;
+	String kuvaus = k;
+	double hinta = h;
+	
+	try {
+		
+		// Luo MySQL-kysely
+		statement = connection.createStatement();
+
+		//UPDATE `ryhmÃ¤1_tuotteet` SET `hinta` = '12' WHERE `ryhmÃ¤1_tuotteet`.`tuoteID` = 1;
+
+		String queryInsert = "INSERT INTO ryhma1_tuotteet (nimi, kuvaus, hinta) VALUES ('"+nimi+"','"+kuvaus+"',"+hinta+")";
+		System.out.println(queryInsert);
+		// Suorita kysely
+		statement.executeUpdate(queryInsert);
+		
+		// Vastauksen kÃ¤sittely
+
+//		System.out.println("tuoteID		" + "Tuote		"+	"Hinta €	" + "Kuvaus");
+//
+//
+//		while (resultSet.next()) {
+//			//id = resultSet.getInt("tuoteID");
+//			nimi = resultSet.getString("nimi");
+//			kuvaus = resultSet.getString("kuvaus");
+//			hinta = resultSet.getDouble("hinta");
+//			System.out.println("\t" + nimi + "\t" + hinta + "\t" + kuvaus);
+//		}
+//		
+	} catch (Exception ex) {
+		ex.printStackTrace();
+	} finally {
+		// Sulje yhteys ja nollaa kyselyt
+		if (resultSet != null) try { resultSet.close(); } catch (SQLException ignore) {}
+		if (statement != null) try { statement.close(); } catch (SQLException ignore) {}
+		if (connection != null) try { connection.close(); } catch (SQLException ignore) {}
+	}
+}
+}
+
+
