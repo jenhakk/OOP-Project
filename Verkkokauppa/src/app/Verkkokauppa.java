@@ -6,17 +6,22 @@ import data.Tietokanta;
 public class Verkkokauppa {
 
 	public static void main(String[] args) {
+
+		Tietokanta.haeTuotteet(); // testi
+
 		
 		Scanner input = new Scanner(System.in);
 		String vastaus;
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
-		System.out.println("Oletko asiakas vai yll‰pito? (a/y)");
+		System.out.println("Oletko asiakas vai yll√§pito? (a/y)");
 		do {
 			vastaus = input.nextLine();
 			
 			if (!vastaus.equalsIgnoreCase("a") && !vastaus.equalsIgnoreCase("y")) {
-				System.out.println("Virheellinen syˆte, yrit‰ uudelleen.");
+
+				System.out.println("Virheellinen sy√∂te, yrit√§ uudelleen.");
+
 			}
 			
 		} while (!vastaus.equalsIgnoreCase("a") && !vastaus.equalsIgnoreCase("y"));
@@ -26,9 +31,14 @@ public class Verkkokauppa {
 			
 			Asiakas Asiakas = new Asiakas();
 			
-			Asiakas.naytaTuotteenTiedot();
-			Asiakas.lisaaTuoteKoriin();
-			Asiakas.naytaYhteissumma();
+
+			
+			int tuotenro = 1;
+			
+			Asiakas.naytaTuotteenTiedot(tuotenro);
+//			Asiakas.lisaaTuoteKoriin();
+//			Asiakas.naytaYhteissumma();
+
 			
 		}
 		
@@ -36,6 +46,7 @@ public class Verkkokauppa {
 			
 			Yllapito Yllapito = new Yllapito();
 			
+
 			// kirjautuminen: kovakoodattu md5 hash
 			//pin koodi on: 1234
 			String vastauscrypt;
@@ -45,15 +56,16 @@ public class Verkkokauppa {
 					vastaus = input.nextLine();
 					vastauscrypt = Yllapito.crypt(vastaus);
 					if (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055")) {
-						System.out.println("V‰‰r‰ pin-koodi, yrit‰ uudelleen: ");
+						System.out.println("V√§√§r√§ pin-koodi, yrit√§ uudelleen: ");
 					}
 				} while (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055"));
 			
+
 			
-			System.out.println("Mit‰ haluaisit tehd‰?");
+			System.out.println("Mit√§ haluaisit tehd√§?");
 			System.out.println("Tulosta varasto: valitse (T)");
 			System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
-			System.out.println("Lis‰t‰ tuotteen: valitse (L)");
+			System.out.println("Lis√§t√§ tuotteen: valitse (L)");
 			
 			do {
 					vastaus = input.nextLine();
@@ -63,7 +75,12 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("m")) {
-						Yllapito.muutaHintaa();
+
+						
+						double hinta = 15.00;
+						int tuotenro = 1;
+						Yllapito.muutaHintaa(hinta, tuotenro);
+
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
@@ -71,7 +88,9 @@ public class Verkkokauppa {
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
-						System.out.println("Virheellinen syˆte, yrit‰ uudelleen.");
+
+						System.out.println("Virheellinen sy√∂te, yrit√§ uudelleen.");
+
 					}
 					
 				} while (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l"));

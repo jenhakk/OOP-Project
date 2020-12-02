@@ -1,8 +1,10 @@
 package app;
 
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import data.Tietokanta;
 
 public class Kayttaja {
 
@@ -11,10 +13,12 @@ public class Kayttaja {
 	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
 	
-	private String nimi;
-	private String kuvaus;
-	private double hinta;
-	private int tuotenro;
+
+	protected String nimi;
+	protected String kuvaus;
+	protected double hinta;
+	protected int tuotenro;
+
 	// private int kpl;
 	
 	
@@ -26,14 +30,22 @@ class Asiakas extends Kayttaja {
 	
 	int i;
 	
-	//N‰ytt‰‰ yksitt‰isen tuotteen tarkemmat tiedot, esim. kuvauksen
-	protected void naytaTuotteenTiedot()
-	
+
+	protected void naytaTuotteet()
 	{
-		tuotteet.get(i).tulostaTiedot();
+		Tietokanta.haeTuotteet();
 	}
 	
-	//Lis‰‰ tuotteen ostoskoriin
+	
+	//N√§ytt√§√§ yksitt√§isen tuotteen tarkemmat tiedot, esim. kuvauksen
+	protected void naytaTuotteenTiedot(int tuotenro)
+	
+	{
+		Tietokanta.naytaTuotteenKuvaus(tuotenro);
+
+	}
+	
+	//Lis√§√§ tuotteen ostoskoriin
 	protected void lisaaTuoteKoriin()
 
 	{
@@ -46,6 +58,18 @@ class Asiakas extends Kayttaja {
 	{
 		double summa;
 	}
+
+	
+	protected void naytaOstoskori()
+	{
+		for (int i=0; i<ostoskori.size(); i++)
+			
+		{
+			ostoskori.get(i).tulostaTiedot();
+			System.out.println();
+		}
+	}
+
 }
 
 class Yllapito extends Asiakas {
@@ -55,27 +79,29 @@ class Yllapito extends Asiakas {
 	protected void tulostaVarasto()
 	
 	{
-		for (int i=0; i<tuotteet.size(); i++)
-			
-		{
-			System.out.println(tuotteet.get(i));
-		}
+
+		Tietokanta.haeTuotteet();
 	}
 	
-	//muuttaa yksitt‰isen tuotteen hintaa
-	protected void muutaHintaa()
+	//muuttaa yksitt√§isen tuotteen hintaa
+	protected void muutaHintaa(double hinta, int tuotenro)
+
 
 	{
 		
 	}
 	
 	
-	//Lis‰‰ yksitt‰isen tuotteen varastoon
-	protected void lisaaTuote()
+	//Lis√§√§ yksitt√§isen tuotteen varastoon
+
+
+	protected void lisaaUusiTuote()
+
 	
 	{
 		tuotteet.add(tuote);
 	}
+
 	
 	//md5 hash pin-koodille
 	protected String crypt(String str) {
@@ -103,4 +129,5 @@ class Yllapito extends Asiakas {
         }
         return "";
     } 
+
 }
