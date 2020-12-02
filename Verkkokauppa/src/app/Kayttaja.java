@@ -96,11 +96,11 @@ class Yllapito extends Asiakas {
 	//Lisää yksittäisen tuotteen varastoon
 
 
-	protected void lisaaUusiTuote()
+	protected void lisaaUusiTuote(String n, String k, double h)
 
 	
 	{
-		tuotteet.add(tuote);
+		Tietokanta.lisaaUusiTuote(n, k, h);
 	}
 
 	

@@ -121,7 +121,7 @@ public class Verkkokauppa {
 					
 					if (vastaus.equalsIgnoreCase("l")) {
 						
-						Tietokanta.lisaaUusiTuote("Pallo", "pyöreä", 250);
+						Yllapito.lisaaUusiTuote("Pallo", "pyöreä", 250);
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
