@@ -37,7 +37,8 @@ public class Verkkokauppa {
 			Asiakas Asiakas = new Asiakas();
 
 			System.out.println("Tervetuloa ostoksille!");
-			Tietokanta.haeTuotteet();
+			Asiakas.tulostaTuotelista();
+			//Asiakas.naytaTuotteenKuvaus(5);
 			do {
 				
 					System.out.println("Anna tuotteen ID lis�t�ksesi tuote ostoskoriin: ");
