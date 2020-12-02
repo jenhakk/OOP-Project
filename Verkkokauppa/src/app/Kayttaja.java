@@ -62,13 +62,15 @@ class Asiakas extends Kayttaja {
 
 	
 	protected void naytaOstoskori()
-	{
+	{	
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 		for (int i=0; i<ostoskori.size(); i++)
 			
 		{
 			ostoskori.get(i).tulostaTiedot();
 			System.out.println();
 		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
 }

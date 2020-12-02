@@ -34,16 +34,21 @@ public class Verkkokauppa {
 
 			System.out.println("Tervetuloa ostoksille!");
 			Tietokanta.haeTuotteet();
+			int vastausint = 0;
 			do {
 				
-					System.out.println("Anna tuotteen ID lisï¿½tï¿½ksesi tuote ostoskoriin: ");
-					vastaus = input.nextLine();
-					int vastausint = 0;
-					try {
-						 vastausint = Integer.parseInt(vastaus);
-					} catch (Exception e){
-						
-					}
+					System.out.println("Anna tuotteen ID lisätääksesi tuote ostoskoriin: ");
+						boolean loopcheck = true;
+					do {
+							loopcheck = true;
+							vastaus = input.nextLine();
+							try {
+								 vastausint = Integer.parseInt(vastaus);
+							} catch (Exception e){
+								System.out.println("Virheellinen syöte, yritä uudelleen.");
+								loopcheck = false;
+							}
+						} while (loopcheck = false);
 					
 					String testi;
 					String string1 = "";
@@ -59,20 +64,36 @@ public class Verkkokauppa {
 					try {
 						 string2dbl = Double.parseDouble(string2);
 					} catch (Exception e){
-						
+						System.out.println("Onneksi olkoon, onnistuit rikkomaan ohjelman. Korkeasti koulutetut simpanssit ovat lähetetty korjaamaan asia.");
 					}
 					
 					Kori ostos = new Kori(string1, string2dbl);
 					Asiakas.ostoskori.add(ostos);
 					System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
-					vastaus = input.nextLine();
+					System.out.println("Voit tarkastella ostoskorisi sisältöä valitsemalla (o)");
+					do {
+						vastaus = input.nextLine();
+						if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")) && (!vastaus.equalsIgnoreCase("o"))) {
+							System.out.println("Virheellinen syöte, yritä uudelleen.");
+						}
+						if (vastaus.equalsIgnoreCase("o")) {
+							System.out.println("Ostoskorisi sisältö:");
+							System.out.println("");
+							Asiakas.naytaOstoskori();
+							System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
+							vastaus = input.nextLine();
+							if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e"))) {
+								System.out.println("Virheellinen syöte, yritä uudelleen.");
+							}
+						}
+					} while (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")));
+					
 				} while (vastaus.equalsIgnoreCase("k"));
 			
-			
+			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
-//			Asiakas.lisaaTuoteKoriin();
-//			Asiakas.naytaYhteissumma();
+
 
 			
 		}

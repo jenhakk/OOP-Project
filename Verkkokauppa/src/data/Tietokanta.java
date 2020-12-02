@@ -30,6 +30,7 @@ public class Tietokanta {
 	
 	public static void haeTuotteet() {
 		
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 		
@@ -64,7 +65,6 @@ public class Tietokanta {
 
 
 				System.out.println(id + "\t\t" + nimi + "\t\t" + hinta + "\t\t" + kuvaus);
-
 			}
 			
 		} catch (Exception ex) {
@@ -75,6 +75,7 @@ public class Tietokanta {
 			if (statement != null) try { statement.close(); } catch (SQLException ignore) {}
 			if (connection != null) try { connection.close(); } catch (SQLException ignore) {}
 		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
 
