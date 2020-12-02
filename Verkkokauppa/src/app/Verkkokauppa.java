@@ -16,6 +16,7 @@ public class Verkkokauppa {
 		String nimi;
 		double hinta;
 		String kuvaus;
+		int tuotenro;
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
 		System.out.println("Oletko asiakas vai yll√§pito? (a/y)");
@@ -114,11 +115,17 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("m")) {
-
 						
-						hinta = 15.00;
-						int tuotenro = 1;
+						Yllapito.tulostaVarasto();
+						System.out.println("Anna tuotenro:");
+						tuotenro = Integer.parseInt(input.nextLine());
+						System.out.println("Anna uusi hinta esim (2.50)");
+						hinta = Double.parseDouble(input.nextLine());
+						
+						//ei toimi viel‰ t‰m‰ 
 						Yllapito.muutaHintaa(hinta, tuotenro);
+						
+						Yllapito.tulostaVarasto();
 
 					}
 					

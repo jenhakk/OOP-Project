@@ -140,9 +140,9 @@ public static void muutaHintaa(double h, int tuotenro) {
 		
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
-
+		//UPDATE `ryhma1_tuotteet` SET `hinta` = '20.00' WHERE `ryhma1_tuotteet`.`tuoteID` = 8;
 		//UPDATE `ryhmÃ¤1_tuotteet` SET `hinta` = '12' WHERE `ryhmÃ¤1_tuotteet`.`tuoteID` = 1;
-		String queryInsert = "UPDATE ryhma1_tuotteet SET hinta = " + h +" where tuoteID = 1";
+		String queryInsert = "UPDATE ryhma1_tuotteet SET hinta = " + h +" where ryhma1_tuotteet.tuoteID = " + tuotenro +"";
 
 		System.out.println(queryInsert);
 		// Suorita kysely
