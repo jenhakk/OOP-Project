@@ -79,7 +79,7 @@ public class Tietokanta {
 
 
 
-public static void naytaTuotteenTiedot(int tuotenro) {
+public static String naytaTuotteenTiedot(int tuotenro) {
 	
 	// Ota yhteys tietokantaan
 	yhdistaTietokanta();
@@ -89,6 +89,7 @@ public static void naytaTuotteenTiedot(int tuotenro) {
 	String nimi;
 	String kuvaus;
 	double hinta;
+	String palautus = "";
 	
 	try {
 		
@@ -103,14 +104,15 @@ public static void naytaTuotteenTiedot(int tuotenro) {
 		resultSet = statement.executeQuery(querySelect);
 		
 		// Vastauksen kÃ¤sittely
-		System.out.println("Tuote\tHinta");
+		//System.out.println("Tuote\tHinta");
 
 		while (resultSet.next()) {
 			//id = resultSet.getInt("tuoteID");
 			nimi = resultSet.getString("nimi");
 			//kuvaus = resultSet.getString("kuvaus");
 			hinta = resultSet.getDouble("hinta");
-			System.out.println(nimi + "\t" + hinta);
+			palautus = (nimi+ ", " +hinta);
+			
 		}
 		
 	} catch (Exception ex) {
@@ -121,6 +123,7 @@ public static void naytaTuotteenTiedot(int tuotenro) {
 		if (statement != null) try { statement.close(); } catch (SQLException ignore) {}
 		if (connection != null) try { connection.close(); } catch (SQLException ignore) {}
 	}
+	return palautus;
 }
 public static void muutaHintaa(double h, int tuotenro) {
 	
@@ -191,17 +194,17 @@ public static void lisaaUusiTuote(String n, String k, double h) {
 		
 		// Vastauksen kÃ¤sittely
 
-		System.out.println("tuoteID		" + "Tuote		"+	"Hinta €	" + "Kuvaus");
-
-
-		while (resultSet.next()) {
-			//id = resultSet.getInt("tuoteID");
-			nimi = resultSet.getString("nimi");
-			kuvaus = resultSet.getString("kuvaus");
-			hinta = resultSet.getDouble("hinta");
-			System.out.println("\t" + nimi + "\t" + hinta + "\t" + kuvaus);
-		}
-		
+//		System.out.println("tuoteID		" + "Tuote		"+	"Hinta €	" + "Kuvaus");
+//
+//
+//		while (resultSet.next()) {
+//			//id = resultSet.getInt("tuoteID");
+//			nimi = resultSet.getString("nimi");
+//			kuvaus = resultSet.getString("kuvaus");
+//			hinta = resultSet.getDouble("hinta");
+//			System.out.println("\t" + nimi + "\t" + hinta + "\t" + kuvaus);
+//		}
+//		
 	} catch (Exception ex) {
 		ex.printStackTrace();
 	} finally {

@@ -1,5 +1,7 @@
 package app;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import data.Tietokanta;
 
@@ -30,20 +32,45 @@ public class Verkkokauppa {
 			
 			Asiakas Asiakas = new Asiakas();
 
-			int tuotenro = 1;
 			System.out.println("Tervetuloa ostoksille!");
 			Tietokanta.haeTuotteet();
-			System.out.println("Anna tuotteen ID lisï¿½tï¿½ksesi tuote ostoskoriin: ");
-			vastaus = input.nextLine();
-			try {
-				int vastausint = Integer.parseInt(vastaus);
-			} catch (Exception e){
+			do {
 				
-			}
+					System.out.println("Anna tuotteen ID lisï¿½tï¿½ksesi tuote ostoskoriin: ");
+					vastaus = input.nextLine();
+					int vastausint = 0;
+					try {
+						 vastausint = Integer.parseInt(vastaus);
+					} catch (Exception e){
+						
+					}
+					
+					String testi;
+					String string1 = "";
+					String string2 = "";
+					double string2dbl = 0;
+					testi = Asiakas.naytaTuotteenTiedot(vastausint);
+					Pattern pattern = Pattern.compile(", *");
+					Matcher matcher = pattern.matcher(testi);
+					if (matcher.find()) {
+					    string1 = testi.substring(0, matcher.start());
+					    string2 = testi.substring(matcher.end());
+					}
+					try {
+						 string2dbl = Double.parseDouble(string2);
+					} catch (Exception e){
+						
+					}
+					
+					Kori ostos = new Kori(string1, string2dbl);
+					Asiakas.ostoskori.add(ostos);
+					System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
+					vastaus = input.nextLine();
+				} while (vastaus.equalsIgnoreCase("k"));
 			
-
 			
-			Asiakas.naytaTuotteenTiedot(tuotenro);
+			Asiakas.naytaOstoskori();
+			
 //			Asiakas.lisaaTuoteKoriin();
 //			Asiakas.naytaYhteissumma();
 
@@ -53,6 +80,7 @@ public class Verkkokauppa {
 		if (vastaus.equalsIgnoreCase("y")) {
 			
 			Yllapito Yllapito = new Yllapito();
+			
 			
 
 			// kirjautuminen: kovakoodattu md5 hash
@@ -73,7 +101,7 @@ public class Verkkokauppa {
 			System.out.println("MitÃ¤ haluaisit tehdÃ¤?");
 			System.out.println("Tulosta varasto: valitse (T)");
 			System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
-			System.out.println("LisÃ¤tÃ¤ tuotteen: valitse (L)");
+			System.out.println("Lisää tuote varastoon: valitse (L)");
 			
 			do {
 					vastaus = input.nextLine();
@@ -92,7 +120,8 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
-						Yllapito.lisaaUusiTuote();
+						
+						Tietokanta.lisaaUusiTuote("Pallo", "pyöreä", 250);
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {

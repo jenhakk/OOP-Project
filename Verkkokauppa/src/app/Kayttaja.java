@@ -23,7 +23,7 @@ public class Kayttaja {
 	
 	
 	Tuote tuote = new Tuote(nimi, kuvaus, hinta, tuotenro);
-	Kori ostos = new Kori(nimi, hinta, tuotenro);
+	Kori ostos = new Kori(nimi, hinta);
 }
 
 class Asiakas extends Kayttaja {
@@ -38,11 +38,12 @@ class Asiakas extends Kayttaja {
 	
 	
 	//Näyttää yksittäisen tuotteen tarkemmat tiedot, esim. kuvauksen
-	protected void naytaTuotteenTiedot(int tuotenro)
+	protected String naytaTuotteenTiedot(int tuotenro)
 	
-	{
-		Tietokanta.naytaTuotteenKuvaus(tuotenro);
-
+	{	
+		String testi;
+		testi = Tietokanta.naytaTuotteenTiedot(tuotenro);
+		return testi;
 	}
 	
 	//Lisää tuotteen ostoskoriin
