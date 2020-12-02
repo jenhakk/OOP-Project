@@ -13,6 +13,10 @@ public class Verkkokauppa {
 		
 		Scanner input = new Scanner(System.in);
 		String vastaus;
+		String nimi;
+		double hinta;
+		String kuvaus;
+		int tuotenro;
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
 		System.out.println("Oletko asiakas vai yllÃ¤pito? (a/y)");
@@ -34,16 +38,21 @@ public class Verkkokauppa {
 
 			System.out.println("Tervetuloa ostoksille!");
 			Tietokanta.haeTuotteet();
+			int vastausint = 0;
 			do {
 				
-					System.out.println("Anna tuotteen ID lisï¿½tï¿½ksesi tuote ostoskoriin: ");
-					vastaus = input.nextLine();
-					int vastausint = 0;
-					try {
-						 vastausint = Integer.parseInt(vastaus);
-					} catch (Exception e){
-						
-					}
+					System.out.println("Anna tuotteen ID lisätääksesi tuote ostoskoriin: ");
+						boolean loopcheck = true;
+					do {
+							loopcheck = true;
+							vastaus = input.nextLine();
+							try {
+								 vastausint = Integer.parseInt(vastaus);
+							} catch (Exception e){
+								System.out.println("Virheellinen syöte, yritä uudelleen.");
+								loopcheck = false;
+							}
+						} while (loopcheck = false);
 					
 					String testi;
 					String string1 = "";
@@ -59,20 +68,36 @@ public class Verkkokauppa {
 					try {
 						 string2dbl = Double.parseDouble(string2);
 					} catch (Exception e){
-						
+						System.out.println("Onneksi olkoon, onnistuit rikkomaan ohjelman. Korkeasti koulutetut simpanssit ovat lähetetty korjaamaan asia.");
 					}
 					
 					Kori ostos = new Kori(string1, string2dbl);
 					Asiakas.ostoskori.add(ostos);
 					System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
-					vastaus = input.nextLine();
+					System.out.println("Voit tarkastella ostoskorisi sisältöä valitsemalla (o)");
+					do {
+						vastaus = input.nextLine();
+						if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")) && (!vastaus.equalsIgnoreCase("o"))) {
+							System.out.println("Virheellinen syöte, yritä uudelleen.");
+						}
+						if (vastaus.equalsIgnoreCase("o")) {
+							System.out.println("Ostoskorisi sisältö:");
+							System.out.println("");
+							Asiakas.naytaOstoskori();
+							System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
+							vastaus = input.nextLine();
+							if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e"))) {
+								System.out.println("Virheellinen syöte, yritä uudelleen.");
+							}
+						}
+					} while (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")));
+					
 				} while (vastaus.equalsIgnoreCase("k"));
 			
-			
+			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
-//			Asiakas.lisaaTuoteKoriin();
-//			Asiakas.naytaYhteissumma();
+
 
 			
 		}
@@ -111,17 +136,30 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("m")) {
-
 						
-						double hinta = 15.00;
-						int tuotenro = 1;
+						Yllapito.tulostaVarasto();
+						System.out.println("Anna tuotenro:");
+						tuotenro = Integer.parseInt(input.nextLine());
+						System.out.println("Anna uusi hinta esim (2.50)");
+						hinta = Double.parseDouble(input.nextLine());
+						
+						//ei toimi vielä tämä 
 						Yllapito.muutaHintaa(hinta, tuotenro);
+						
+						Yllapito.tulostaVarasto();
 
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
+						System.out.println("Anna tuotteen nimi:");
+						nimi = input.nextLine();
+						System.out.println("Kirjoita tuotteen kuvaus:");
+						kuvaus = input.nextLine();
+						System.out.println("Anna tuotteen hinta (esim. 1.50)");
+						hinta = Double.parseDouble(input.nextLine());
 						
-						Tietokanta.lisaaUusiTuote("Pallo", "pyöreä", 250);
+						Yllapito.lisaaUusiTuote(nimi, kuvaus, hinta);
+						Yllapito.tulostaVarasto();
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
