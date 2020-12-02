@@ -77,7 +77,7 @@ class Yllapito extends Asiakas {
 	
 	
 	//tulostaa varaston tiedot
-	protected void tulostaVarasto()
+	public void tulostaVarasto()
 	
 	{
 

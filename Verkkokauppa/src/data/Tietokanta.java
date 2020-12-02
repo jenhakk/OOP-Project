@@ -188,7 +188,7 @@ public static void lisaaUusiTuote(String n, String k, double h) {
 		//UPDATE `ryhmÃ¤1_tuotteet` SET `hinta` = '12' WHERE `ryhmÃ¤1_tuotteet`.`tuoteID` = 1;
 
 		String queryInsert = "INSERT INTO ryhma1_tuotteet (nimi, kuvaus, hinta) VALUES ('"+nimi+"','"+kuvaus+"',"+hinta+")";
-		System.out.println(queryInsert);
+		//System.out.println(queryInsert);
 		// Suorita kysely
 		statement.executeUpdate(queryInsert);
 		
