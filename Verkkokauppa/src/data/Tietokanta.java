@@ -46,14 +46,14 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT * FROM ryhmä1_tuotteet";
+			String querySelect = "SELECT * FROM ryhma1_tuotteet";
 			
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 			
 
 			// Vastauksen käsittely
-			System.out.println("tuoteID\tTuote\tHinta €\tKuvaus");
+			System.out.println("tuoteID\t\tTuote\t\tHinta �\t\tKuvaus");
 
 
 			while (resultSet.next()) {
@@ -63,7 +63,7 @@ public class Tietokanta {
 				hinta = resultSet.getDouble("hinta");
 
 
-				System.out.println(id + "\t" + nimi + "\t" + hinta + "\t" + kuvaus);
+				System.out.println(id + "\t\t" + nimi + "\t\t" + hinta + "\t\t" + kuvaus);
 
 			}
 			
@@ -95,7 +95,7 @@ public static void naytaTuotteenKuvaus(int tuotenro) {
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
 
-		String querySelect = "SELECT tuoteID, nimi, kuvaus FROM ryhmä1_tuotteet where tuoteID =" + tuotenro ;
+		String querySelect = "SELECT tuoteID, nimi, kuvaus FROM ryhma1_tuotteet where tuoteID =" + tuotenro ;
 		
 		// Suorita kysely
 		resultSet = statement.executeQuery(querySelect);
@@ -135,14 +135,14 @@ public static void muutaHintaa(double h, int tuotenro) {
 		
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
-		//UPDATE `ryhmä1_tuotteet` SET `hinta` = '12' WHERE `ryhmä1_tuotteet`.`tuoteID` = 1;
-		String queryInsert = "UPDATE ryhmä1_tuotteet SET hinta = " + h +" where tuoteID = 1";
+		//UPDATE `ryhmä1_tuotteet` SET `hinta` = '12' WHERE `ryhma1_tuotteet`.`tuoteID` = 1;
+		String queryInsert = "UPDATE ryhm�1_tuotteet SET hinta = " + h +" where tuoteID = 1";
 		System.out.println(queryInsert);
 		// Suorita kysely
 		statement.executeUpdate(queryInsert);
 		
 		// Vastauksen käsittely
-		System.out.println("tuoteID\tTuote\tHinta €\tKuvaus");
+		System.out.println("tuoteID\tTuote\tHinta �\tKuvaus");
 
 		while (resultSet.next()) {
 			id = resultSet.getInt("tuoteID");
@@ -177,14 +177,14 @@ public static void lisaaUusiTuote(String n, String k, double h) {
 		
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
-		//UPDATE `ryhmä1_tuotteet` SET `hinta` = '12' WHERE `ryhmä1_tuotteet`.`tuoteID` = 1;
-		String queryInsert = "INSERT INTO ryhmä1_tuotteet (nimi, kuvaus, hinta) VALUES ('"+nimi+"','"+kuvaus+"',"+hinta+")";
+		//UPDATE `ryhmä1_tuotteet` SET `hinta` = '12' WHERE `ryhma1_tuotteet`.`tuoteID` = 1;
+		String queryInsert = "INSERT INTO ryhma1_tuotteet (nimi, kuvaus, hinta) VALUES ('"+nimi+"','"+kuvaus+"',"+hinta+")";
 		System.out.println(queryInsert);
 		// Suorita kysely
 		statement.executeUpdate(queryInsert);
 		
 		// Vastauksen käsittely
-		System.out.println("tuoteID\tTuote\tHinta €\tKuvaus");
+		System.out.println("tuoteID\tTuote\tHinta �\tKuvaus");
 
 		while (resultSet.next()) {
 			//id = resultSet.getInt("tuoteID");

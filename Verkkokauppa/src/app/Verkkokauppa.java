@@ -7,7 +7,6 @@ public class Verkkokauppa {
 
 	public static void main(String[] args) {
 
-		Tietokanta.haeTuotteet(); // testi
 
 		
 		Scanner input = new Scanner(System.in);
@@ -30,10 +29,17 @@ public class Verkkokauppa {
 		if (vastaus.equalsIgnoreCase("a")) {
 			
 			Asiakas Asiakas = new Asiakas();
-			
-
-			
 			int tuotenro = 1;
+			System.out.println("Tervetuloa ostoksille!");
+			Tietokanta.haeTuotteet();
+			System.out.println("Anna tuotteen ID lisätäksesi tuote ostoskoriin: ");
+			vastaus = input.nextLine();
+			try {
+				int vastausint = Integer.parseInt(vastaus);
+			} catch (Exception e){
+				
+			}
+			
 			
 			Asiakas.naytaTuotteenTiedot(tuotenro);
 //			Asiakas.lisaaTuoteKoriin();
@@ -84,7 +90,7 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
-						Yllapito.lisaaTuote();
+						Yllapito.lisaaUusiTuote();
 					}
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
