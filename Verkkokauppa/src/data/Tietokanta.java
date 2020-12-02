@@ -34,7 +34,7 @@ public class Tietokanta {
 		yhdistaTietokanta();
 		
 
-		// Tietokannan taulun kentät tulostusta varten
+		// Tietokannan taulun kentÃ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -52,8 +52,8 @@ public class Tietokanta {
 			resultSet = statement.executeQuery(querySelect);
 			
 
-			// Vastauksen käsittely
-			System.out.println("tuoteID\t\tTuote\t\tHinta �\t\tKuvaus");
+			// Vastauksen kÃ¤sittely
+			System.out.println("tuoteID\t\tTuote\t\tHinta €\t\tKuvaus");
 
 
 			while (resultSet.next()) {
@@ -79,12 +79,12 @@ public class Tietokanta {
 
 
 
-public static void naytaTuotteenKuvaus(int tuotenro) {
+public static void naytaTuotteenTiedot(int tuotenro) {
 	
 	// Ota yhteys tietokantaan
 	yhdistaTietokanta();
 	
-	// Tietokannan taulun kentät tulostusta varten
+	// Tietokannan taulun kentÃ¤t tulostusta varten
 	int id;
 	String nimi;
 	String kuvaus;
@@ -95,20 +95,22 @@ public static void naytaTuotteenKuvaus(int tuotenro) {
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
 
-		String querySelect = "SELECT tuoteID, nimi, kuvaus FROM ryhma1_tuotteet where tuoteID =" + tuotenro ;
+
+		String querySelect = "SELECT nimi, hinta FROM ryhma1_tuotteet where tuoteID =" + tuotenro ;
+
 		
 		// Suorita kysely
 		resultSet = statement.executeQuery(querySelect);
 		
-		// Vastauksen käsittely
-		System.out.println("TuoteID\tTuote\tKuvaus");
+		// Vastauksen kÃ¤sittely
+		System.out.println("Tuote\tHinta");
 
 		while (resultSet.next()) {
-			id = resultSet.getInt("tuoteID");
+			//id = resultSet.getInt("tuoteID");
 			nimi = resultSet.getString("nimi");
-			kuvaus = resultSet.getString("kuvaus");
-			//hinta = resultSet.getDouble("hinta");
-			System.out.println(nimi + "\t" + kuvaus);
+			//kuvaus = resultSet.getString("kuvaus");
+			hinta = resultSet.getDouble("hinta");
+			System.out.println(nimi + "\t" + hinta);
 		}
 		
 	} catch (Exception ex) {
@@ -125,7 +127,7 @@ public static void muutaHintaa(double h, int tuotenro) {
 	// Ota yhteys tietokantaan
 	yhdistaTietokanta();
 	
-	// Tietokannan taulun kentät tulostusta varten
+	// Tietokannan taulun kentÃ¤t tulostusta varten
 	int id = tuotenro;
 	String nimi;
 	String kuvaus;
@@ -135,14 +137,16 @@ public static void muutaHintaa(double h, int tuotenro) {
 		
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
-		//UPDATE `ryhmä1_tuotteet` SET `hinta` = '12' WHERE `ryhma1_tuotteet`.`tuoteID` = 1;
-		String queryInsert = "UPDATE ryhm�1_tuotteet SET hinta = " + h +" where tuoteID = 1";
+
+		//UPDATE `ryhmÃ¤1_tuotteet` SET `hinta` = '12' WHERE `ryhmÃ¤1_tuotteet`.`tuoteID` = 1;
+		String queryInsert = "UPDATE ryhma1_tuotteet SET hinta = " + h +" where tuoteID = 1";
+
 		System.out.println(queryInsert);
 		// Suorita kysely
 		statement.executeUpdate(queryInsert);
 		
-		// Vastauksen käsittely
-		System.out.println("tuoteID\tTuote\tHinta �\tKuvaus");
+		// Vastauksen kÃ¤sittely
+		System.out.println("tuoteID\tTuote\tHinta €\tKuvaus");
 
 		while (resultSet.next()) {
 			id = resultSet.getInt("tuoteID");
@@ -167,7 +171,7 @@ public static void lisaaUusiTuote(String n, String k, double h) {
 	// Ota yhteys tietokantaan
 	yhdistaTietokanta();
 	
-	// Tietokannan taulun kentät tulostusta varten
+	// Tietokannan taulun kentÃ¤t tulostusta varten
 	//int id = tuotenro;
 	String nimi = n;
 	String kuvaus = k;
@@ -177,14 +181,18 @@ public static void lisaaUusiTuote(String n, String k, double h) {
 		
 		// Luo MySQL-kysely
 		statement = connection.createStatement();
-		//UPDATE `ryhmä1_tuotteet` SET `hinta` = '12' WHERE `ryhma1_tuotteet`.`tuoteID` = 1;
+
+		//UPDATE `ryhmÃ¤1_tuotteet` SET `hinta` = '12' WHERE `ryhmÃ¤1_tuotteet`.`tuoteID` = 1;
+
 		String queryInsert = "INSERT INTO ryhma1_tuotteet (nimi, kuvaus, hinta) VALUES ('"+nimi+"','"+kuvaus+"',"+hinta+")";
 		System.out.println(queryInsert);
 		// Suorita kysely
 		statement.executeUpdate(queryInsert);
 		
-		// Vastauksen käsittely
-		System.out.println("tuoteID\tTuote\tHinta �\tKuvaus");
+		// Vastauksen kÃ¤sittely
+
+		System.out.println("tuoteID		" + "Tuote		"+	"Hinta €	" + "Kuvaus");
+
 
 		while (resultSet.next()) {
 			//id = resultSet.getInt("tuoteID");

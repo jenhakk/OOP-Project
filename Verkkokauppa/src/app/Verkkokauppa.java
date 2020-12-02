@@ -29,10 +29,11 @@ public class Verkkokauppa {
 		if (vastaus.equalsIgnoreCase("a")) {
 			
 			Asiakas Asiakas = new Asiakas();
+
 			int tuotenro = 1;
 			System.out.println("Tervetuloa ostoksille!");
 			Tietokanta.haeTuotteet();
-			System.out.println("Anna tuotteen ID lisätäksesi tuote ostoskoriin: ");
+			System.out.println("Anna tuotteen ID lisï¿½tï¿½ksesi tuote ostoskoriin: ");
 			vastaus = input.nextLine();
 			try {
 				int vastausint = Integer.parseInt(vastaus);
@@ -40,6 +41,7 @@ public class Verkkokauppa {
 				
 			}
 			
+
 			
 			Asiakas.naytaTuotteenTiedot(tuotenro);
 //			Asiakas.lisaaTuoteKoriin();
