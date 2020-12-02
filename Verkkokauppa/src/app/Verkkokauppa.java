@@ -38,7 +38,7 @@ public class Verkkokauppa {
 
 			System.out.println("Tervetuloa ostoksille!");
 			Asiakas.tulostaTuotelista();
-			//Asiakas.naytaTuotteenKuvaus(5);
+			//Asiakas.naytaTuotteenKuvaus(6);
 			do {
 				
 					System.out.println("Anna tuotteen ID lis�t�ksesi tuote ostoskoriin: ");
