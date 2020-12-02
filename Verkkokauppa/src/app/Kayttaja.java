@@ -1,7 +1,9 @@
 package app;
 
-import java.util.ArrayList;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import data.Tietokanta;
 
 public class Kayttaja {
@@ -11,10 +13,12 @@ public class Kayttaja {
 	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
 	
+
 	protected String nimi;
 	protected String kuvaus;
 	protected double hinta;
 	protected int tuotenro;
+
 	// private int kpl;
 	
 	
@@ -26,20 +30,22 @@ class Asiakas extends Kayttaja {
 	
 	int i;
 	
+
 	protected void naytaTuotteet()
 	{
 		Tietokanta.haeTuotteet();
 	}
 	
 	
-	//N‰ytt‰‰ yksitt‰isen tuotteen tarkemmat tiedot, esim. kuvauksen
+	//N√§ytt√§√§ yksitt√§isen tuotteen tarkemmat tiedot, esim. kuvauksen
 	protected void naytaTuotteenTiedot(int tuotenro)
 	
 	{
 		Tietokanta.naytaTuotteenKuvaus(tuotenro);
+
 	}
 	
-	//Lis‰‰ tuotteen ostoskoriin
+	//Lis√§√§ tuotteen ostoskoriin
 	protected void lisaaTuoteKoriin()
 
 	{
@@ -52,6 +58,7 @@ class Asiakas extends Kayttaja {
 	{
 		double summa;
 	}
+
 	
 	protected void naytaOstoskori()
 	{
@@ -62,6 +69,7 @@ class Asiakas extends Kayttaja {
 			System.out.println();
 		}
 	}
+
 }
 
 class Yllapito extends Asiakas {
@@ -71,23 +79,55 @@ class Yllapito extends Asiakas {
 	protected void tulostaVarasto()
 	
 	{
+
 		Tietokanta.haeTuotteet();
 	}
 	
-	//muuttaa yksitt‰isen tuotteen hintaa
+	//muuttaa yksitt√§isen tuotteen hintaa
 	protected void muutaHintaa(double hinta, int tuotenro)
+
 
 	{
 		
 	}
 	
 	
-	//Lis‰‰ yksitt‰isen tuotteen varastoon
+	//Lis√§√§ yksitt√§isen tuotteen varastoon
+
+
 	protected void lisaaUusiTuote()
+
 	
 	{
 		tuotteet.add(tuote);
 	}
 
 	
+	//md5 hash pin-koodille
+	protected String crypt(String str) {
+        if (str == null || str.length() == 0) {
+            throw new IllegalArgumentException("String to encript cannot be null or zero length");
+        }
+
+        MessageDigest digester;
+        try {
+            digester = MessageDigest.getInstance("MD5");
+
+            digester.update(str.getBytes());
+            byte[] hash = digester.digest();
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < hash.length; i++) {
+                if ((0xff & hash[i]) < 0x10) {
+                    hexString.append("0" + Integer.toHexString((0xFF & hash[i])));
+                } else {
+                    hexString.append(Integer.toHexString(0xFF & hash[i]));
+                }
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    } 
+
 }
