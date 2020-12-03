@@ -29,8 +29,13 @@ public class Tietokanta {
 	}
 	//************************************************************
 	// tulostaa kaikki tuotteet tietokannasta ja kaikki niiden tiedot
-	// Yll�pito
+	// Yll�pito
 	public static void haeTuotteet() {
+
+
+
+		
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
@@ -62,7 +67,6 @@ public class Tietokanta {
 				hinta = resultSet.getDouble("hinta");
 
 				System.out.println(id + "\t\t" + nimi + "\t\t" + hinta + "\t\t" + kuvaus);
-
 			}
 
 		} catch (Exception ex) {
@@ -85,6 +89,7 @@ public class Tietokanta {
 				} catch (SQLException ignore) {
 				}
 		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 	//************************************************************
 	// hakee tieokannasta tuotteen nimen ja kuvauksen tuotenro:n perusteella
@@ -170,7 +175,7 @@ public class Tietokanta {
 			resultSet = statement.executeQuery(querySelect);
 
 			// Vastauksen kÃ¤sittely
-			System.out.println("TuoteID\t\tTuote\t\tKuvaus");
+			System.out.println("TuoteID\t\tTuote\t\tHinta");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");

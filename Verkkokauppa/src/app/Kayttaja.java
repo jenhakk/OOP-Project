@@ -28,7 +28,7 @@ class Asiakas extends Kayttaja {
 
 	int i;
 
-	// Näyttää asiakkaalle yksittäisen tuotteen nimen ja hinnan, palauttaa stringinä
+	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa stringinï¿½
 	protected String naytaTuotteenTiedot(int tuotenro)
 
 	{
@@ -37,12 +37,12 @@ class Asiakas extends Kayttaja {
 		return testi;
 	}
 
-	//Näyttää asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron perusteella
+	//Nï¿½yttï¿½ï¿½ asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron perusteella
 	protected void naytaTuotteenKuvaus(int tuotenro) {
 		Tietokanta.naytaTuotteenKuvaus(tuotenro);
 	}
 
-	//Tulostaa asiakkaalle näkyviin tuotteiden id:t, nimet ja hinnat
+	//Tulostaa asiakkaalle nï¿½kyviin tuotteiden id:t, nimet ja hinnat
 	protected void tulostaTuotelista() {
 		Tietokanta.naytaTuotelista();
 	}
@@ -61,14 +61,17 @@ class Asiakas extends Kayttaja {
 		double summa;
 	}
 
-	//Lista-ostoskorin sisältö
+
+	//Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
 		for (int i = 0; i < ostoskori.size(); i++)
+
 
 		{
 			ostoskori.get(i).tulostaTiedot();
 			System.out.println();
 		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
 }
