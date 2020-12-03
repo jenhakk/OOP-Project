@@ -160,6 +160,8 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
+						
+						do {
 						System.out.println("Anna tuotteen nimi:");
 						nimi = input.nextLine();
 						System.out.println("Kirjoita tuotteen kuvaus:");
@@ -168,6 +170,12 @@ public class Verkkokauppa {
 						hinta = Double.parseDouble(input.nextLine());
 						
 						Yllapito.lisaaUusiTuote(nimi, kuvaus, hinta);
+					
+						System.out.println("Haluatko lisätä uuden tuotteen varastoon?");
+						vastaus = input.nextLine();
+						
+						} while (vastaus.equals("k"));
+						
 						Yllapito.tulostaVarasto();
 					}
 					
