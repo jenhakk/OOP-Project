@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import data.Tietokanta;
+import data.*;
 
 public class Verkkokauppa {
 
@@ -17,6 +17,8 @@ public class Verkkokauppa {
 		double hinta;
 		String kuvaus;
 		int tuotenro;
+		
+		String filename = "src/data/kuitti.txt";
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
 		System.out.println("Oletko asiakas vai yllÃ¤pito? (a/y)");
@@ -39,14 +41,18 @@ public class Verkkokauppa {
 			System.out.println("Tervetuloa ostoksille!");
 
 			Asiakas.tulostaTuotelista();
+
+			
+
 			//Asiakas.naytaTuotteenKuvaus(5);
 
-			Tietokanta.haeTuotteet();
+			//Tietokanta.haeTuotteet();
 			int vastausint = 0;
+
 
 			do {
 				
-					System.out.println("Anna tuotteen ID lisätääksesi tuote ostoskoriin: ");
+					System.out.println("Anna tuotteen numero lisätääksesi tuote ostoskoriin: ");
 						boolean loopcheck = true;
 					do {
 							loopcheck = true;
@@ -102,9 +108,12 @@ public class Verkkokauppa {
 			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
-
-
-			
+			//kuitin tulostus tekstitiedostoon, kuitin tulostus konsoliin
+			//ja sen j�lkeen tekstitiedoston tyhjennys
+			Asiakas.tulostaKoriTiedostoon(filename);
+			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
+			Asiakas.tyhjennaKuitti(filename);
+						
 		}
 		
 		if (vastaus.equalsIgnoreCase("y")) {
@@ -156,6 +165,8 @@ public class Verkkokauppa {
 					}
 					
 					if (vastaus.equalsIgnoreCase("l")) {
+						
+						do {
 						System.out.println("Anna tuotteen nimi:");
 						nimi = input.nextLine();
 						System.out.println("Kirjoita tuotteen kuvaus:");
@@ -164,6 +175,12 @@ public class Verkkokauppa {
 						hinta = Double.parseDouble(input.nextLine());
 						
 						Yllapito.lisaaUusiTuote(nimi, kuvaus, hinta);
+					
+						System.out.println("Haluatko lis�t� uuden tuotteen varastoon?");
+						vastaus = input.nextLine();
+						
+						} while (vastaus.equals("k"));
+						
 						Yllapito.tulostaVarasto();
 					}
 					
