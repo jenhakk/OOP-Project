@@ -1,16 +1,12 @@
 package app;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.io.Serializable;
 import data.*;
 
 public class Kayttaja {
@@ -146,7 +142,8 @@ class Asiakas extends Kayttaja {
 		return alltext;
 	}
 	
-protected void tyhjennaKuitti(String filename) {
+	//tyhjent‰‰ tekstitiedoston
+	protected void tyhjennaKuitti(String filename) {
 		
 		try {
 			
@@ -188,23 +185,6 @@ class Yllapito extends Asiakas {
 	{
 		Tietokanta.lisaaUusiTuote(n, k, h);
 	}
-
-	// Kirjoittaa kuitin tiedostoon
-//	public void kirjoitaTiedostoon(String txt, String filename) {
-//		
-//		try {
-//			java.util.Date date = new java.util.Date();
-//			//Valinta true lopussa aiheuttaa sen ettei ylikirjoiteta vaan jatketaan olemassaolevan listan loppuun
-//			
-//			FileWriter fwriter = new FileWriter(filename, true);
-//			fwriter.write(date.toString() + "\n");
-//			fwriter.write(txt + "\n");
-//			fwriter.close();
-//			
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//		}
 
 	// md5 hash pin-koodille
 	protected String crypt(String str) {
