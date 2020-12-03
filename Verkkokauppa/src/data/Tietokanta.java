@@ -175,7 +175,7 @@ public class Tietokanta {
 			resultSet = statement.executeQuery(querySelect);
 
 			// Vastauksen kÃ¤sittely
-			System.out.println("TuoteID\t\tTuote\t\tKuvaus");
+			System.out.println("Tuotenro\t\tTuote\t\tHinta");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
