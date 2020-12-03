@@ -50,7 +50,7 @@ public class Verkkokauppa {
 
 			do {
 				
-					System.out.println("Anna tuotteen ID lisätääksesi tuote ostoskoriin: ");
+					System.out.println("Anna tuotteen numero lisätääksesi tuote ostoskoriin: ");
 						boolean loopcheck = true;
 					do {
 							loopcheck = true;
