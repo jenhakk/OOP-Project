@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import data.Tietokanta;
+import data.*;
 
 public class Verkkokauppa {
 
@@ -17,6 +17,8 @@ public class Verkkokauppa {
 		double hinta;
 		String kuvaus;
 		int tuotenro;
+		
+		String filename = "src/data/kuitti.txt";
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
 		System.out.println("Oletko asiakas vai yllÃ¤pito? (a/y)");
@@ -106,9 +108,9 @@ public class Verkkokauppa {
 			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
-
-
-			
+			//kuitin tulostus tekstitiedostoon
+			Asiakas.tulostaKoriTiedostoon(filename);
+						
 		}
 		
 		if (vastaus.equalsIgnoreCase("y")) {

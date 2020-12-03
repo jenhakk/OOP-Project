@@ -1,9 +1,15 @@
 package app;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import data.Tietokanta;
+import java.io.Serializable;
+import data.*;
 
 public class Kayttaja {
 
@@ -11,6 +17,8 @@ public class Kayttaja {
 
 	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
+
+	public String filename = "src/data/kuitti.txt";
 
 	protected String nimi;
 	protected String kuvaus;
@@ -74,6 +82,48 @@ class Asiakas extends Kayttaja {
 		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
+public void tulostaKoriTiedostoon(String filename) {
+	
+		try {
+			FileWriter fwriter = new FileWriter(filename, true);
+			java.util.Date date = new java.util.Date();
+			
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
+			fwriter.write("\r\n\r\n");
+			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
+			fwriter.write("\r\n\r\n\r\n");
+			fwriter.write("\t\tTässä kuitti ostoksistasi");
+			fwriter.write("\r\n\r\n");
+			
+			
+			for (int i = 0; i < ostoskori.size(); i++)
+
+
+			{
+				fwriter.write("\t\t\t" + ostoskori.get(i).nimi);
+				fwriter.write("\t");
+				String hinta = Double.toString(ostoskori.get(i).hinta);
+				fwriter.write(hinta);
+				fwriter.write(" €");
+				fwriter.write("\r\n");
+
+			}	
+			fwriter.write("\r\n\r\n");
+			fwriter.write("\t\tYhteensä:");
+			fwriter.write("\r\n\r\n\r\n");
+			fwriter.write("\t\t" + date.toString());
+			fwriter.write("\r\n\r\n");
+			fwriter.write("\tKiitos käynnistä ja tervetuloa uudelleen!");
+			fwriter.write("\r\n\r\n");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
+				fwriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}
+
+
 }
 
 //************************************************************
@@ -101,6 +151,25 @@ class Yllapito extends Asiakas {
 	{
 		Tietokanta.lisaaUusiTuote(n, k, h);
 	}
+	
+	
+	//Kirjoittaa kuitin tiedostoon
+//	public void kirjoitaTiedostoon(String txt, String filename) {
+//		
+//		try {
+//			java.util.Date date = new java.util.Date();
+//			//Valinta true lopussa aiheuttaa sen ettei ylikirjoiteta vaan jatketaan olemassaolevan listan loppuun
+//			
+//			FileWriter fwriter = new FileWriter(filename, true);
+//			fwriter.write(date.toString() + "\n");
+//			fwriter.write(txt + "\n");
+//			fwriter.close();
+//			
+//		} catch (Exception e) {
+//			
+//			e.printStackTrace();
+//		}
+	
 
 	// md5 hash pin-koodille
 	protected String crypt(String str) {
@@ -128,5 +197,5 @@ class Yllapito extends Asiakas {
 		}
 		return "";
 	}
-
 }
+

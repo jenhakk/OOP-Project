@@ -32,6 +32,11 @@ public class Tuote {
 		System.out.println("Hinta: " + hinta);
 		//System.out.println("Tuote nro: " + tuotenro);
 	}
+	
+public void tulostaTiedostoon() {
+		
+		
+	}
 }
 
 class Kori extends Tuote {
