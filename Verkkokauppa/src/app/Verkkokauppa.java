@@ -108,8 +108,11 @@ public class Verkkokauppa {
 			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
-			//kuitin tulostus tekstitiedostoon
+			//kuitin tulostus tekstitiedostoon, kuitin tulostus konsoliin
+			//ja sen jälkeen tekstitiedoston tyhjennys
 			Asiakas.tulostaKoriTiedostoon(filename);
+			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
+			Asiakas.tyhjennaKuitti(filename);
 						
 		}
 		

@@ -1,7 +1,9 @@
 package app;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -36,7 +38,8 @@ class Asiakas extends Kayttaja {
 
 	int i;
 
-	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa stringinï¿½
+	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
+	// stringinï¿½
 	protected String naytaTuotteenTiedot(int tuotenro)
 
 	{
@@ -45,12 +48,13 @@ class Asiakas extends Kayttaja {
 		return testi;
 	}
 
-	//Nï¿½yttï¿½ï¿½ asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron perusteella
+	// Nï¿½yttï¿½ï¿½ asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron
+	// perusteella
 	protected void naytaTuotteenKuvaus(int tuotenro) {
 		Tietokanta.naytaTuotteenKuvaus(tuotenro);
 	}
 
-	//Tulostaa asiakkaalle nï¿½kyviin tuotteiden id:t, nimet ja hinnat
+	// Tulostaa asiakkaalle nï¿½kyviin tuotteiden id:t, nimet ja hinnat
 	protected void tulostaTuotelista() {
 		Tietokanta.naytaTuotelista();
 	}
@@ -69,35 +73,33 @@ class Asiakas extends Kayttaja {
 		double summa;
 	}
 
-
-	//Lista-ostoskorin sisï¿½ltï¿½
+	// Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
 		for (int i = 0; i < ostoskori.size(); i++)
-
 
 		{
 			ostoskori.get(i).tulostaTiedot();
 			System.out.println();
 		}
-		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
-public void tulostaKoriTiedostoon(String filename) {
-	
+	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
+	protected void tulostaKoriTiedostoon(String filename) {
+
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
 			java.util.Date date = new java.util.Date();
-			
+
 			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\tTässä kuitti ostoksistasi");
 			fwriter.write("\r\n\r\n");
-			
-			
-			for (int i = 0; i < ostoskori.size(); i++)
 
+			for (int i = 0; i < ostoskori.size(); i++)
 
 			{
 				fwriter.write("\t\t\t" + ostoskori.get(i).nimi);
@@ -107,7 +109,7 @@ public void tulostaKoriTiedostoon(String filename) {
 				fwriter.write(" €");
 				fwriter.write("\r\n");
 
-			}	
+			}
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\tYhteensä:");
 			fwriter.write("\r\n\r\n\r\n");
@@ -116,13 +118,48 @@ public void tulostaKoriTiedostoon(String filename) {
 			fwriter.write("\tKiitos käynnistä ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
-				fwriter.close();
+			fwriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-}
+	}
 
+	// Tulostaa kuitin tiedostosta konsoliin
+	protected String tulostaKuittiKonsoliin(String filename) {
+
+		String alltext = "";
+
+		try {
+			FileReader freader = new FileReader(filename);
+			BufferedReader br = new BufferedReader(freader);
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				alltext = alltext + line + "\n";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			alltext = "";
+		}
+
+		return alltext;
+	}
+	
+protected void tyhjennaKuitti(String filename) {
+		
+		try {
+			
+			FileWriter fwriter = new FileWriter(filename, false);
+			
+			fwriter.write("");
+			fwriter.close();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
 
 }
 
@@ -151,9 +188,8 @@ class Yllapito extends Asiakas {
 	{
 		Tietokanta.lisaaUusiTuote(n, k, h);
 	}
-	
-	
-	//Kirjoittaa kuitin tiedostoon
+
+	// Kirjoittaa kuitin tiedostoon
 //	public void kirjoitaTiedostoon(String txt, String filename) {
 //		
 //		try {
@@ -169,7 +205,6 @@ class Yllapito extends Asiakas {
 //			
 //			e.printStackTrace();
 //		}
-	
 
 	// md5 hash pin-koodille
 	protected String crypt(String str) {
@@ -198,4 +233,3 @@ class Yllapito extends Asiakas {
 		return "";
 	}
 }
-
