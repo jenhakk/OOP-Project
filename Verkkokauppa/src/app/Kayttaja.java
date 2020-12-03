@@ -141,19 +141,19 @@ class Asiakas extends Kayttaja {
 
 		return alltext;
 	}
-	
-	//tyhjent‰‰ tekstitiedoston
+
+	// tyhjent‰‰ tekstitiedoston
 	protected void tyhjennaKuitti(String filename) {
-		
+
 		try {
-			
+
 			FileWriter fwriter = new FileWriter(filename, false);
-			
+
 			fwriter.write("");
 			fwriter.close();
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 	}
