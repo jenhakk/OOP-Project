@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import data.*;
 
 public class Kayttaja {
@@ -80,7 +82,8 @@ class Asiakas extends Kayttaja {
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
 			java.util.Date date = new java.util.Date();
-
+			
+			fwriter.write("\r\n");
 			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
@@ -100,7 +103,7 @@ class Asiakas extends Kayttaja {
 
 			}
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\tYhteensä: " + yhteensa + " €" );
+			fwriter.write("\t\t\tYhteensä: " + yhteensa + " €" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
@@ -166,8 +169,32 @@ class Asiakas extends Kayttaja {
 		
 		return summa;
 	}
+	
+	//poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)
+	public void poistaTuoteKorista(String poisto)
+	{
+		Iterator<Kori> itr = ostoskori.iterator();
+		
+		while (itr.hasNext()) {
+			
+			 ostos = itr.next();
+			 
+			 if (ostos.nimi.equals(poisto)) {
+				 
+				 itr.remove();
+			 }
+		}
+			
+		{
+			
+		
+		}
+			
+			
+	}
+	
 }
-
+	
 
 //************************************************************
 class Yllapito extends Asiakas {

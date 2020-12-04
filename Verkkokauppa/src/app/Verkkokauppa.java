@@ -17,6 +17,7 @@ public class Verkkokauppa {
 		int tuotenro;
 		double yhteissumma;
 		
+		
 		String filename = "src/data/kuitti.txt";
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
@@ -105,7 +106,13 @@ public class Verkkokauppa {
 				} while (vastaus.equalsIgnoreCase("k"));
 			
 			System.out.println("Lopullinen ostoskorisi: ");
+			
+			//Asiakas antaa poistettavan tuotteen nimen esim "Sukka" ja tuote poistuu ostoskorista
+			//Asiakas.poistaTuoteKorista("Sukka");
+			
 			Asiakas.naytaOstoskori();
+			
+			
 			
 			//laskee ostosten yhteissumman korista
 			yhteissumma = Asiakas.laskeSumma();
