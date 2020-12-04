@@ -49,8 +49,9 @@ class Kori extends Tuote {
 		tuotenro = 0;
 	}
 	
-	public Kori(String n, double h) {
+	public Kori(int t, String n, double h) {
 		
+		tuotenro = t;
 		nimi = n;
 		hinta = h;
 	}

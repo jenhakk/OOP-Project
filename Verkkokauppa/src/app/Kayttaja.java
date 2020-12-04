@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import data.*;
 
 public class Kayttaja {
@@ -26,7 +28,7 @@ public class Kayttaja {
 	// private int kpl;
 
 	Tuote tuote = new Tuote(nimi, kuvaus, hinta, tuotenro);
-	Kori ostos = new Kori(nimi, hinta);
+	Kori ostos = new Kori(tuotenro, nimi, hinta);
 }
 
 //************************************************************
@@ -62,13 +64,6 @@ class Asiakas extends Kayttaja {
 		ostoskori.add(ostos);
 	}
 
-	// Tulostaa ostoskorin yhteissumman
-	protected void naytaYhteissumma()
-
-	{
-		double summa;
-	}
-
 	// Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
 		for (int i = 0; i < ostoskori.size(); i++)
@@ -82,12 +77,13 @@ class Asiakas extends Kayttaja {
 	}
 
 	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
-	protected void tulostaKoriTiedostoon(String filename) {
+	protected void tulostaKoriTiedostoon(double yhteensa, String filename) {
 
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
 			java.util.Date date = new java.util.Date();
-
+			
+			fwriter.write("\r\n");
 			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
@@ -107,7 +103,7 @@ class Asiakas extends Kayttaja {
 
 			}
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\tYhteensä:");
+			fwriter.write("\t\t\tYhteensä: " + yhteensa + " €" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
@@ -157,8 +153,63 @@ class Asiakas extends Kayttaja {
 			e.printStackTrace();
 		}
 	}
+	
+	//Laskee ostosten yhteissumman ja palauttaa sen
+	public double laskeSumma()
+	{
+		
+		double summa = 0;
+		
+		for (int i = 0; i < ostoskori.size(); i++)
+			
+		{
+			summa = summa + (ostoskori.get(i).hinta);
+		
+		}
+		
+		return summa;
+	}
+	
+	//poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)
+	public void poistaTuoteKorista(String poisto)
+	{
+		Iterator<Kori> itr = ostoskori.iterator();
+		
+		while (itr.hasNext()) {
+			
+			 ostos = itr.next();
+			 
+			 if (ostos.nimi.equals(poisto)) {
+				 
+				 itr.remove();
+			 }
+		}
+			
+		{
+			
+		
+		}
+			
+			
+	}
+	public String palautaTuotenro(String txt) {
 
+		String[] temp = txt.split(", ");
+		return temp[0];
+	}
+	public String palautaNimi(String txt) {
+
+		String[] temp = txt.split(", ");
+		return temp[1];
+	}
+	public String palautaHinta(String txt) {
+
+		String[] temp = txt.split(", ");
+		return temp[2];
+	}
+	
 }
+	
 
 //************************************************************
 class Yllapito extends Asiakas {
