@@ -150,6 +150,8 @@ class Asiakas extends Kayttaja {
 			e.printStackTrace();
 		}
 	}
+	
+	//Laskee ostosten yhteissumman ja palauttaa sen
 	public double laskeSumma()
 	{
 		
