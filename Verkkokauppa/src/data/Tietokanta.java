@@ -201,7 +201,9 @@ public class Tietokanta {
 			resultSet = statement.executeQuery(querySelect);
 
 			// Vastauksen kÃ¤sittely
+			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 			System.out.println("Tuotenro\t\tTuote\t\tHinta");
+			
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
@@ -234,6 +236,7 @@ public class Tietokanta {
 				} catch (SQLException ignore) {
 				}*/
 		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 	//************************************************************
 	// hakee tuotteen nimen ja hinnan tuotenumeron perusteella
