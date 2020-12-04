@@ -8,8 +8,6 @@ import data.*;
 public class Verkkokauppa {
 
 	public static void main(String[] args) {
-
-
 		
 		Scanner input = new Scanner(System.in);
 		String vastaus;
@@ -108,11 +106,18 @@ public class Verkkokauppa {
 			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
-			//kuitin tulostus tekstitiedostoon, kuitin tulostus konsoliin
+			//kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
 			//ja sen jälkeen tekstitiedoston tyhjennys
 			Asiakas.tulostaKoriTiedostoon(filename);
 			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
 			Asiakas.tyhjennaKuitti(filename);
+			
+			/*int tilausID = Tietokanta.lisaaTilaus("testi", "testi", "testi@testi.com", "0401234567", "testikatu 2");
+			System.out.println(Asiakas.ostoskori.get(0).tuotenro);
+			/*for(int i = 0; i < Asiakas.ostoskori.size(); i++) {
+				Tietokanta.lisaaTuoteTilaukseen(7, Asiakas.ostoskori.get(i).tuotenro, 1);
+			}*/
+			
 						
 		}
 		
