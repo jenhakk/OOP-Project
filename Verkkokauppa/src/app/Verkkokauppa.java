@@ -93,9 +93,11 @@ public class Verkkokauppa {
 					Asiakas.ostoskori.add(ostos);
 					System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
 					System.out.println("Voit tarkastella ostoskorisi sisältöä valitsemalla (o)");
+					System.out.println("Voit poistaa tuotteen ostoskorista valitsemalla (p)");
+					
 					do {
 						vastaus = input.nextLine();
-						if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")) && (!vastaus.equalsIgnoreCase("o"))) {
+						if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")) && (!vastaus.equalsIgnoreCase("o")) && (!vastaus.equalsIgnoreCase("p"))) {
 							System.out.println("Virheellinen syöte, yritä uudelleen.");
 						}
 						if (vastaus.equalsIgnoreCase("o")) {
@@ -108,6 +110,29 @@ public class Verkkokauppa {
 								System.out.println("Virheellinen syote, yrita uudelleen.");
 							}
 						}
+						if (vastaus.equalsIgnoreCase("p")) {
+							System.out.println("Kirjoita tuotteen nimi jonka haluat poistaa ostoskorista: ");
+							vastaus = input.nextLine();
+							Asiakas.poistaTuoteKorista(vastaus);
+							System.out.println("Tuote " + vastaus + " poistettu ostoskorista.");
+							System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
+							System.out.println("Voit tarkastella ostoskorisi sisältöä valitsemalla (o)");
+							vastaus = input.nextLine();
+							if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")) && (!vastaus.equalsIgnoreCase("o"))) {
+								System.out.println("Virheellinen syote, yrita uudelleen.");
+							}
+							if (vastaus.equalsIgnoreCase("o")) {
+								System.out.println("Ostoskorisi sisältää:");
+								System.out.println("");
+								Asiakas.naytaOstoskori();
+								System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
+								vastaus = input.nextLine();
+								if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e"))) {
+									System.out.println("Virheellinen syote, yrita uudelleen.");
+								}
+							}
+							}
+						
 					} while (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")));
 					
 				} while (vastaus.equalsIgnoreCase("k"));

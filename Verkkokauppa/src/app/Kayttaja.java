@@ -66,6 +66,7 @@ class Asiakas extends Kayttaja {
 
 	// Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 		for (int i = 0; i < ostoskori.size(); i++)
 
 		{
@@ -84,11 +85,11 @@ class Asiakas extends Kayttaja {
 			java.util.Date date = new java.util.Date();
 			
 			fwriter.write("\r\n");
-			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
+			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\tTässä kuitti ostoksistasi");
+			fwriter.write("\t\tTï¿½ssï¿½ kuitti ostoksistasi");
 			fwriter.write("\r\n\r\n");
 
 			for (int i = 0; i < ostoskori.size(); i++)
@@ -98,18 +99,18 @@ class Asiakas extends Kayttaja {
 				fwriter.write("\t");
 				String hinta = Double.toString(ostoskori.get(i).hinta);
 				fwriter.write(hinta);
-				fwriter.write(" €");
+				fwriter.write(" ï¿½");
 				fwriter.write("\r\n");
 
 			}
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t\tYhteensä: " + yhteensa + " €" );
+			fwriter.write("\t\t\tYhteensï¿½: " + yhteensa + " ï¿½" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\tKiitos käynnistä ja tervetuloa uudelleen!");
+			fwriter.write("\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
+			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
 			fwriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -138,7 +139,7 @@ class Asiakas extends Kayttaja {
 		return alltext;
 	}
 
-	// tyhjentää tekstitiedoston
+	// tyhjentï¿½ï¿½ tekstitiedoston
 	protected void tyhjennaKuitti(String filename) {
 
 		try {
@@ -179,7 +180,7 @@ class Asiakas extends Kayttaja {
 			
 			 ostos = itr.next();
 			 
-			 if (ostos.nimi.equals(poisto)) {
+			 if (ostos.nimi.equalsIgnoreCase(poisto)) {
 				 
 				 itr.remove();
 			 }
