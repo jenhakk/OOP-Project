@@ -12,22 +12,23 @@ public class Verkkokauppa {
 		Scanner input = new Scanner(System.in);
 		String vastaus;
 		String nimi;
-		double hinta;
+		double hinta = 0;
 		String kuvaus;
-		int tuotenro;
+
+		int tuotenro = 0;
 		double yhteissumma;
 		
 		
 		String filename = "src/data/kuitti.txt";
 		
 		System.out.println("Tervetuloa Verkkokauppaan!");
-		System.out.println("Oletko asiakas vai yllÃ¤pito? (a/y)");
+		System.out.println("Oletko asiakas vai ylläpito? (a/y)");
 		do {
 			vastaus = input.nextLine();
 			
 			if (!vastaus.equalsIgnoreCase("a") && !vastaus.equalsIgnoreCase("y")) {
 
-				System.out.println("Virheellinen syÃ¶te, yritÃ¤ uudelleen.");
+				System.out.println("Virheellinen syöte, yritä uudelleen.");
 
 			}
 			
@@ -98,13 +99,13 @@ public class Verkkokauppa {
 							System.out.println("Virheellinen syöte, yritä uudelleen.");
 						}
 						if (vastaus.equalsIgnoreCase("o")) {
-							System.out.println("Ostoskorisi sisältö:");
+							System.out.println("Ostoskorisi sisältää:");
 							System.out.println("");
 							Asiakas.naytaOstoskori();
 							System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
 							vastaus = input.nextLine();
 							if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e"))) {
-								System.out.println("Virheellinen syöte, yritä uudelleen.");
+								System.out.println("Virheellinen syote, yrita uudelleen.");
 							}
 						}
 					} while (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e")));
@@ -124,8 +125,10 @@ public class Verkkokauppa {
 			yhteissumma = Asiakas.laskeSumma();
 			
 			//kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
-			//ja sen j�lkeen tekstitiedoston tyhjennys
+
+			//ja sen jälkeen tekstitiedoston tyhjennys
 			Asiakas.tulostaKoriTiedostoon(yhteissumma, filename);
+
 			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
 			Asiakas.tyhjennaKuitti(filename);
 			
@@ -153,13 +156,13 @@ public class Verkkokauppa {
 					vastaus = input.nextLine();
 					vastauscrypt = Yllapito.crypt(vastaus);
 					if (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055")) {
-						System.out.println("VÃ¤Ã¤rÃ¤ pin-koodi, yritÃ¤ uudelleen: ");
+						System.out.println("Väärä pin-koodi, yritä uudelleen: ");
 					}
 				} while (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055"));
 			
 
 			
-			System.out.println("MitÃ¤ haluaisit tehdÃ¤?");
+			System.out.println("Mitä haluaisit tehdä?");
 			System.out.println("Tulosta varasto: valitse (T)");
 			System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
 			System.out.println("Lisää tuote varastoon: valitse (L)");
@@ -174,12 +177,30 @@ public class Verkkokauppa {
 					if (vastaus.equalsIgnoreCase("m")) {
 						
 						Yllapito.tulostaVarasto();
-						System.out.println("Anna tuotenro:");
-						tuotenro = Integer.parseInt(input.nextLine());
-						System.out.println("Anna uusi hinta esim (2.50)");
-						hinta = Double.parseDouble(input.nextLine());
+						int loopcheck = 1;
+						do {
+							
+								System.out.println("Anna tuotenro:");
+								loopcheck = 1;
+								try {
+									tuotenro = Integer.parseInt(input.nextLine());
+									} catch (Exception e){
+										loopcheck = 0;
+									}
+								System.out.println("Anna uusi hinta esim (2.50)");
+								try {
+									hinta = Double.parseDouble(input.nextLine());
+									} catch (Exception e){
+										loopcheck = 0;
+										System.out.println("asd");
+									}
+								
+								if (loopcheck == 0) {
+									System.out.println("Virheellinen syöte luvuissa, yritä uudestaan.");
+								}
+							} while (loopcheck == 0);
 						
-						//ei toimi vielä tämä 
+						
 						Yllapito.muutaHintaa(hinta, tuotenro);
 						
 						Yllapito.tulostaVarasto();
@@ -198,7 +219,7 @@ public class Verkkokauppa {
 						
 						Yllapito.lisaaUusiTuote(nimi, kuvaus, hinta);
 					
-						System.out.println("Haluatko lis�t� uuden tuotteen varastoon?");
+						System.out.println("Haluatko lisätä uuden tuotteen varastoon?");
 						vastaus = input.nextLine();
 						
 						} while (vastaus.equals("k"));
@@ -208,7 +229,7 @@ public class Verkkokauppa {
 					
 					if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m") && !vastaus.equalsIgnoreCase("l")) {
 
-						System.out.println("Virheellinen syÃ¶te, yritÃ¤ uudelleen.");
+						System.out.println("Virheellinen syöte, yritä uudelleen.");
 
 					}
 					
