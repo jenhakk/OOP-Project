@@ -15,6 +15,7 @@ public class Verkkokauppa {
 		double hinta;
 		String kuvaus;
 		int tuotenro;
+		double yhteissumma;
 		
 		String filename = "src/data/kuitti.txt";
 		
@@ -106,9 +107,12 @@ public class Verkkokauppa {
 			System.out.println("Lopullinen ostoskorisi: ");
 			Asiakas.naytaOstoskori();
 			
+			//laskee ostosten yhteissumman korista
+			yhteissumma = Asiakas.laskeSumma();
+			
 			//kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
 			//ja sen jälkeen tekstitiedoston tyhjennys
-			Asiakas.tulostaKoriTiedostoon(filename);
+			Asiakas.tulostaKoriTiedostoon(yhteissumma, filename);
 			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
 			Asiakas.tyhjennaKuitti(filename);
 			

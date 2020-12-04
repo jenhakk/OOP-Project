@@ -62,13 +62,6 @@ class Asiakas extends Kayttaja {
 		ostoskori.add(ostos);
 	}
 
-	// Tulostaa ostoskorin yhteissumman
-	protected void naytaYhteissumma()
-
-	{
-		double summa;
-	}
-
 	// Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
 		for (int i = 0; i < ostoskori.size(); i++)
@@ -82,7 +75,7 @@ class Asiakas extends Kayttaja {
 	}
 
 	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
-	protected void tulostaKoriTiedostoon(String filename) {
+	protected void tulostaKoriTiedostoon(double yhteensa, String filename) {
 
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
@@ -107,7 +100,7 @@ class Asiakas extends Kayttaja {
 
 			}
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\tYhteensä:");
+			fwriter.write("\t\tYhteensä: " + yhteensa + " €" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
@@ -157,8 +150,22 @@ class Asiakas extends Kayttaja {
 			e.printStackTrace();
 		}
 	}
-
+	public double laskeSumma()
+	{
+		
+		double summa = 0;
+		
+		for (int i = 0; i < ostoskori.size(); i++)
+			
+		{
+			summa = summa + (ostoskori.get(i).hinta);
+		
+		}
+		
+		return summa;
+	}
 }
+
 
 //************************************************************
 class Yllapito extends Asiakas {
