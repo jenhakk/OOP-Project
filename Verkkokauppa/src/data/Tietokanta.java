@@ -255,7 +255,7 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT nimi, hinta FROM ryhma1_tuotteet where tuoteID =" + tuotenro;
+			String querySelect = "SELECT tuoteID, nimi, hinta FROM ryhma1_tuotteet where tuoteID =" + tuotenro;
 
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
@@ -264,9 +264,10 @@ public class Tietokanta {
 
 			while (resultSet.next()) {
 		
+				id = resultSet.getInt("tuoteID");
 				nimi = resultSet.getString("nimi");
 				hinta = resultSet.getDouble("hinta");
-				palautus = (nimi + ", " + hinta);
+				palautus = (id + ", " + nimi + ", " + hinta);
 
 			}
 
