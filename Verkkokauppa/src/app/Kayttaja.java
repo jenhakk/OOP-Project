@@ -28,7 +28,7 @@ public class Kayttaja {
 	// private int kpl;
 
 	Tuote tuote = new Tuote(nimi, kuvaus, hinta, tuotenro);
-	Kori ostos = new Kori(nimi, hinta);
+	Kori ostos = new Kori(tuotenro, nimi, hinta);
 }
 
 //************************************************************
@@ -191,6 +191,21 @@ class Asiakas extends Kayttaja {
 		}
 			
 			
+	}
+	public String palautaTuotenro(String txt) {
+
+		String[] temp = txt.split(", ");
+		return temp[0];
+	}
+	public String palautaNimi(String txt) {
+
+		String[] temp = txt.split(", ");
+		return temp[1];
+	}
+	public String palautaHinta(String txt) {
+
+		String[] temp = txt.split(", ");
+		return temp[2];
 	}
 	
 }

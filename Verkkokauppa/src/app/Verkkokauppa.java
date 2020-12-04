@@ -65,24 +65,30 @@ public class Verkkokauppa {
 							}
 						} while (loopcheck = false);
 					
-					String testi;
-					String string1 = "";
-					String string2 = "";
-					double string2dbl = 0;
-					testi = Asiakas.naytaTuotteenTiedot(vastausint);
-					Pattern pattern = Pattern.compile(", *");
-					Matcher matcher = pattern.matcher(testi);
-					if (matcher.find()) {
-					    string1 = testi.substring(0, matcher.start());
-					    string2 = testi.substring(matcher.end());
-					}
-					try {
-						 string2dbl = Double.parseDouble(string2);
-					} catch (Exception e){
-						System.out.println("Onneksi olkoon, onnistuit rikkomaan ohjelman. Korkeasti koulutetut simpanssit ovat lähetetty korjaamaan asia.");
-					}
+					String testi = Asiakas.naytaTuotteenTiedot(vastausint);
+					int tuoteID = Integer.parseInt(Asiakas.palautaTuotenro(testi));
+					String tuote = Asiakas.palautaNimi(testi);
+					double hintaDbl = Double.parseDouble(Asiakas.palautaHinta(testi));
+					//System.out.println(tuoteID + tuote + hintaDbl);
 					
-					Kori ostos = new Kori(string1, string2dbl);
+//					String testi;
+//					String string1 = "";
+//					String string2 = "";
+//					double string2dbl = 0;
+//					testi = Asiakas.naytaTuotteenTiedot(vastausint);
+//					Pattern pattern = Pattern.compile(", *");
+//					Matcher matcher = pattern.matcher(testi);
+//					if (matcher.find()) {
+//					    string1 = testi.substring(0, matcher.start());
+//					    string2 = testi.substring(matcher.end());
+//					}
+//					try {
+//						 string2dbl = Double.parseDouble(string2);
+//					} catch (Exception e){
+//						System.out.println("Onneksi olkoon, onnistuit rikkomaan ohjelman. Korkeasti koulutetut simpanssit ovat lähetetty korjaamaan asia.");
+//					}
+//					
+					Kori ostos = new Kori(tuoteID, tuote, hintaDbl);
 					Asiakas.ostoskori.add(ostos);
 					System.out.println("Haluatko lisätä uuden tuotteen ostoskoriin? (k/e)");
 					System.out.println("Voit tarkastella ostoskorisi sisältöä valitsemalla (o)");
