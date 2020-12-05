@@ -78,7 +78,7 @@ class Asiakas extends Kayttaja {
 	}
 
 	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
-	protected void tulostaKoriTiedostoon(double yhteensa, String filename) {
+	protected void tulostaKoriTiedostoon(double yhteensa, String filename, String alennus) {
 
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
@@ -104,6 +104,7 @@ class Asiakas extends Kayttaja {
 
 			}
 			fwriter.write("\r\n\r\n");
+			fwriter.write("\t\t\tAlennus: " + alennus + "\r\n\r\n");
 			fwriter.write("\t\t\tYhteens�: " + yhteensa + " �" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
@@ -208,6 +209,8 @@ class Asiakas extends Kayttaja {
 		String[] temp = txt.split(", ");
 		return temp[2];
 	}
+	
+
 	
 }
 	

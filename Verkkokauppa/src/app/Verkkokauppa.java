@@ -14,6 +14,8 @@ public class Verkkokauppa {
 		String nimi;
 		double hinta = 0;
 		String kuvaus;
+		String alennus = "";
+		
 
 		int tuotenro = 0;
 		double yhteissumma;
@@ -148,11 +150,39 @@ public class Verkkokauppa {
 			
 			//laskee ostosten yhteissumman korista
 			yhteissumma = Asiakas.laskeSumma();
+			System.out.println("Ostostesi yhteissumma on: " + yhteissumma + "Ä");
+			
+		
+			System.out.println("Onko sinulla alennuskoodia? (k/e)");
+			vastaus = input.nextLine();
+			
+			if (vastaus.equalsIgnoreCase("k"))
+				do {
+				System.out.println("Anna alennuskoodi:");
+				vastaus = input.nextLine();
+				
+				if (vastaus.equalsIgnoreCase("jippii")) {
+					
+					System.out.println("Koodi oikein! Saat 10% alennuksen ostostesi yhteissummasta!");
+					
+					yhteissumma = yhteissumma * 0.9;
+					alennus = "-10 %";
+					
+					System.out.println("Ostostesi yhteissumma on nyt: "+ yhteissumma + " Ä");
+					break; 
+					} else {
+						alennus = "0 %";
+						System.out.println("V‰‰r‰ koodi! Yrit‰ uudelleen tai jatka syˆtt‰m‰‰n asiakastietosi kirjoittamalla 'e'");
+					}
+	
+				} while(!vastaus.equalsIgnoreCase("e"));
+			
+				
 			
 			//kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
 
 			//ja sen j√§lkeen tekstitiedoston tyhjennys
-			Asiakas.tulostaKoriTiedostoon(yhteissumma, filename);
+			Asiakas.tulostaKoriTiedostoon(yhteissumma, filename, alennus);
 
 			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
 			Asiakas.tyhjennaKuitti(filename);
