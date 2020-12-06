@@ -34,6 +34,15 @@ public class Kayttaja {
 //************************************************************
 class Asiakas extends Kayttaja {
 
+	protected String etunimi;
+	protected String sukunimi;
+	protected String sPosti;
+	protected String puhelin;
+	protected String osoite;
+	
+	private String[] tarvittavatAsiakasTiedot = {"Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite"};
+	private String[] asiakasTiedot = new String[5];
+	
 	int i;
 
 	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
@@ -170,6 +179,22 @@ class Asiakas extends Kayttaja {
 		}
 		
 		return summa;
+	}
+	
+	public String getTarvittavatAsiakasTiedot(int i) {
+		return tarvittavatAsiakasTiedot[i];
+	}
+	
+	public int getTarvittavatAsiakasTiedotLength() {
+		return tarvittavatAsiakasTiedot.length;
+	}
+	
+	public void setAsiakasTieto(int i, String tieto) {
+		asiakasTiedot[i] = tieto;
+	}
+	
+	public String getAsiakasTieto(int i) {
+		return asiakasTiedot[i];
 	}
 	
 	//poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)

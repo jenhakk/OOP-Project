@@ -193,7 +193,32 @@ public class Verkkokauppa {
 					}
 
 				} while (!vastaus.equalsIgnoreCase("e"));
+			
+			System.out.println("Täytä asiakastietosi");
+			
+			for(int i = 0; i < Asiakas.getTarvittavatAsiakasTiedotLength(); i++) {
+				System.out.println(Asiakas.getTarvittavatAsiakasTiedot(i) + ":");
+				
+				try {
+					vastaus = input.nextLine();
+				} catch(Exception e) {
+					System.out.println("Väärä syöte");
+					i--;
+				}
 
+				Asiakas.setAsiakasTieto(i, vastaus);
+			}
+			
+			int tilausID = Tietokanta.lisaaTilaus(Asiakas.getAsiakasTieto(0), 
+					Asiakas.getAsiakasTieto(1), 
+					Asiakas.getAsiakasTieto(2), 
+					Asiakas.getAsiakasTieto(3), 
+					Asiakas.getAsiakasTieto(4));
+			
+			for(int i = 0; i < Asiakas.ostoskori.size(); i++) {
+				Tietokanta.lisaaTuoteTilaukseen(tilausID, Asiakas.ostoskori.get(i).tuotenro, 1); 
+			}
+			
 			// kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
 
 			// ja sen jÃ¤lkeen tekstitiedoston tyhjennys
@@ -202,13 +227,9 @@ public class Verkkokauppa {
 			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
 			Asiakas.tyhjennaKuitti(filename);
 
-			/*
-			 * int tilausID = Tietokanta.lisaaTilaus("testi", "testi", "testi@testi.com",
-			 * "0401234567", "testikatu 2");
-			 * System.out.println(Asiakas.ostoskori.get(0).tuotenro); /*for(int i = 0; i <
-			 * Asiakas.ostoskori.size(); i++) { Tietokanta.lisaaTuoteTilaukseen(7,
-			 * Asiakas.ostoskori.get(i).tuotenro, 1); }
-			 */
+			
+			
+			 
 
 		}
 
