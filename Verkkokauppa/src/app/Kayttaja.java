@@ -34,6 +34,15 @@ public class Kayttaja {
 //************************************************************
 class Asiakas extends Kayttaja {
 
+	protected String etunimi;
+	protected String sukunimi;
+	protected String sPosti;
+	protected String puhelin;
+	protected String osoite;
+	
+	private String[] tarvittavatAsiakasTiedot = {"Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite"};
+	private String[] asiakasTiedot = new String[5];
+	
 	int i;
 
 	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
@@ -66,6 +75,7 @@ class Asiakas extends Kayttaja {
 
 	// Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 		for (int i = 0; i < ostoskori.size(); i++)
 
 		{
@@ -77,18 +87,18 @@ class Asiakas extends Kayttaja {
 	}
 
 	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
-	protected void tulostaKoriTiedostoon(double yhteensa, String filename) {
+	protected void tulostaKoriTiedostoon(double yhteensa, String filename, String alennus) {
 
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
 			java.util.Date date = new java.util.Date();
 			
 			fwriter.write("\r\n");
-			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
+			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\tTässä kuitti ostoksistasi");
+			fwriter.write("\t\tTï¿½ssï¿½ kuitti ostoksistasi");
 			fwriter.write("\r\n\r\n");
 
 			for (int i = 0; i < ostoskori.size(); i++)
@@ -98,18 +108,19 @@ class Asiakas extends Kayttaja {
 				fwriter.write("\t");
 				String hinta = Double.toString(ostoskori.get(i).hinta);
 				fwriter.write(hinta);
-				fwriter.write(" €");
+				fwriter.write(" ï¿½");
 				fwriter.write("\r\n");
 
 			}
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t\tYhteensä: " + yhteensa + " €" );
+			fwriter.write("\t\t\tAlennus: " + alennus + "\r\n\r\n");
+			fwriter.write("\t\t\tYhteensï¿½: " + yhteensa + " ï¿½" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\tKiitos käynnistä ja tervetuloa uudelleen!");
+			fwriter.write("\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’");
+			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
 			fwriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -138,7 +149,7 @@ class Asiakas extends Kayttaja {
 		return alltext;
 	}
 
-	// tyhjentää tekstitiedoston
+	// tyhjentï¿½ï¿½ tekstitiedoston
 	protected void tyhjennaKuitti(String filename) {
 
 		try {
@@ -170,6 +181,22 @@ class Asiakas extends Kayttaja {
 		return summa;
 	}
 	
+	public String getTarvittavatAsiakasTiedot(int i) {
+		return tarvittavatAsiakasTiedot[i];
+	}
+	
+	public int getTarvittavatAsiakasTiedotLength() {
+		return tarvittavatAsiakasTiedot.length;
+	}
+	
+	public void setAsiakasTieto(int i, String tieto) {
+		asiakasTiedot[i] = tieto;
+	}
+	
+	public String getAsiakasTieto(int i) {
+		return asiakasTiedot[i];
+	}
+	
 	//poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)
 	public void poistaTuoteKorista(String poisto)
 	{
@@ -179,7 +206,7 @@ class Asiakas extends Kayttaja {
 			
 			 ostos = itr.next();
 			 
-			 if (ostos.nimi.equals(poisto)) {
+			 if (ostos.nimi.equalsIgnoreCase(poisto)) {
 				 
 				 itr.remove();
 			 }
@@ -207,6 +234,8 @@ class Asiakas extends Kayttaja {
 		String[] temp = txt.split(", ");
 		return temp[2];
 	}
+	
+
 	
 }
 	
