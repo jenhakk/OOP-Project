@@ -1,10 +1,13 @@
 package data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import app.Tuote;
 
 public class Tietokanta {
 
@@ -76,7 +79,7 @@ public class Tietokanta {
 			resultSet = statement.executeQuery(querySelect);
 
 			// Vastauksen kÃ¤sittely
-			System.out.println("tuoteID\t\tTuote\t\tHinta €\t\tKuvaus");
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta €", "Kuvaus");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
@@ -84,7 +87,7 @@ public class Tietokanta {
 				kuvaus = resultSet.getString("kuvaus");
 				hinta = resultSet.getDouble("hinta");
 
-				System.out.println(id + "\t\t" + nimi + "\t\t" + hinta + "\t\t" + kuvaus);
+				System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", id, nimi, hinta, kuvaus);
 			}
 
 		} catch (Exception ex) {
@@ -199,7 +202,7 @@ public class Tietokanta {
 
 			// Vastauksen kÃ¤sittely
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
-			System.out.println("Tuotenro\t\tTuote\t\tHinta");
+			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta");
 			
 
 			while (resultSet.next()) {
@@ -207,7 +210,7 @@ public class Tietokanta {
 				nimi = resultSet.getString("nimi");
 				hinta = resultSet.getDouble("hinta");
 
-				System.out.println(id + "\t\t" +nimi + "\t\t" + hinta);
+				System.out.printf("%-15.15s %-15.15s %-15.15s%n", id, nimi, hinta);
 
 			}
 
@@ -477,5 +480,77 @@ public class Tietokanta {
 						
 					}*/
 			}
+	}
+	
+public static void tulostaTilaukset() {
+
+
+
+		
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+
+		// Ota yhteys tietokantaan
+		yhdistaTietokanta();
+
+		// Tietokannan taulun kentÃ¤t tulostusta varten
+
+		int id;
+		String nimi;
+		String kuvaus;
+		double hinta;
+		int tilausID;
+		int kpl;
+		String enimi;
+		String snimi;
+		Date pvm;
+
+		try {
+
+			// Luo MySQL-kysely
+			statement = connection.createStatement();
+
+			String querySelect = "SELECT tilausID, pvm, tuoteID, kpl, etunimi, sukunimi, nimi FROM ryhma1_tilaus JOIN ryhma1_tilauksen_tuote USING(tilausID) JOIN ryhma1_tuotteet USING(tuoteID)";
+
+			// Suorita kysely
+			resultSet = statement.executeQuery(querySelect);
+
+			// Vastauksen kÃ¤sittely
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n", "TilausID", "Pvm", "Sukunimi", "Etunimi", "Tuote", "TuoteID","kpl");
+
+			while (resultSet.next()) {
+				tilausID = resultSet.getInt("tilausID");
+				pvm = resultSet.getDate("pvm");
+				id = resultSet.getInt("tuoteID");
+				kpl = resultSet.getInt("kpl");
+				nimi = resultSet.getString("nimi");
+				enimi = resultSet.getString("etunimi");
+				snimi = resultSet.getString("sukunimi");
+				System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n",tilausID, pvm, snimi, enimi, nimi, id, kpl);
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			
+			suljeYhteys(resultSet, statement, connection);
+			
+			/* Sulje yhteys ja nollaa kyselyt
+			if (resultSet != null)
+				try {
+					resultSet.close();
+				} catch (SQLException ignore) {
+				}
+			if (statement != null)
+				try {
+					statement.close();
+				} catch (SQLException ignore) {
+				}
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException ignore) {
+				}*/
+		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 }

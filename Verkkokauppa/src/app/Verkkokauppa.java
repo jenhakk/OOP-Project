@@ -147,7 +147,7 @@ public class Verkkokauppa {
 
 			// laskee ostosten yhteissumman korista
 			yhteissumma = Asiakas.laskeSumma();
-			System.out.println("Ostostesi yhteissumma on: " + yhteissumma + "Ä");
+			System.out.printf("Ostostesi yhteissumma on: %.2f Ä\r\n", yhteissumma);
 
 			System.out.println("Onko sinulla alennuskoodia? (k/e)");
 			vastaus = input.nextLine();
@@ -164,7 +164,7 @@ public class Verkkokauppa {
 						yhteissumma = yhteissumma * 0.9;
 						alennus = "-10 %";
 
-						System.out.println("Ostostesi yhteissumma on nyt: " + yhteissumma + " Ä");
+						System.out.printf("Ostostesi yhteissumma on nyt: %.2f Ä\r\n", yhteissumma);
 						break;
 					} else if (vastaus.equalsIgnoreCase("hurraa")) {
 
@@ -173,7 +173,7 @@ public class Verkkokauppa {
 						yhteissumma = yhteissumma * 0.85;
 						alennus = "-15 %";
 
-						System.out.printf("Ostostesi yhteissumma on nyt: "  + yhteissumma + " Ä");
+						System.out.printf("Ostostesi yhteissumma on nyt: %.2f Ä\r\n", yhteissumma);
 						break;
 
 					} else if (vastaus.equalsIgnoreCase("wuhuu")) {
@@ -183,7 +183,7 @@ public class Verkkokauppa {
 						yhteissumma = yhteissumma * 0.80;
 						alennus = "-20 %";
 
-						System.out.println("Ostostesi yhteissumma on nyt: " + yhteissumma + " Ä");
+						System.out.printf("Ostostesi yhteissumma on nyt: %.2f Ä\r\n", yhteissumma);
 						break;
 
 					} else {
@@ -254,6 +254,8 @@ public class Verkkokauppa {
 			System.out.println("Tulosta varasto: valitse (T)");
 			System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
 			System.out.println("Lis√§√§ tuote varastoon: valitse (L)");
+			System.out.println("N‰yt‰ t‰m‰n hetkiset tilaukset: valitse (N)");
+			
 
 			do {
 				vastaus = input.nextLine();
@@ -313,16 +315,21 @@ public class Verkkokauppa {
 
 					Yllapito.tulostaVarasto();
 				}
+				
+				if (vastaus.equalsIgnoreCase("n")) {
+					
+					Yllapito.naytaTilaukset();
+				}
 
 				if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m")
-						&& !vastaus.equalsIgnoreCase("l")) {
+						&& !vastaus.equalsIgnoreCase("l") && !vastaus.equalsIgnoreCase("n")) {
 
 					System.out.println("Virheellinen sy√∂te, yrit√§ uudelleen.");
 
 				}
 
 			} while (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m")
-					&& !vastaus.equalsIgnoreCase("l"));
+					&& !vastaus.equalsIgnoreCase("l") && !vastaus.equalsIgnoreCase("n"));
 
 		}
 

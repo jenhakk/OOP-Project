@@ -244,7 +244,7 @@ class Asiakas extends Kayttaja {
 class Yllapito extends Asiakas {
 
 	// tulostaa varaston tiedot
-	public void tulostaVarasto()
+	protected void tulostaVarasto()
 
 	{
 
@@ -291,5 +291,10 @@ class Yllapito extends Asiakas {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	protected void naytaTilaukset()
+	{
+		Tietokanta.tulostaTilaukset();
 	}
 }
