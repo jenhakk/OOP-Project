@@ -149,6 +149,7 @@ public class Tietokanta {
 				kuvaus = resultSet.getString("kuvaus");
 				
 				System.out.println(nimi + "\t\t" + kuvaus);
+				System.out.println("");
 
 			}
 
