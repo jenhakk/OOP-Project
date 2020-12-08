@@ -34,6 +34,15 @@ public class Kayttaja {
 //************************************************************
 class Asiakas extends Kayttaja {
 
+	protected String etunimi;
+	protected String sukunimi;
+	protected String sPosti;
+	protected String puhelin;
+	protected String osoite;
+	
+	private String[] tarvittavatAsiakasTiedot = {"Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite"};
+	private String[] asiakasTiedot = new String[5];
+	
 	int i;
 
 	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
@@ -49,7 +58,7 @@ class Asiakas extends Kayttaja {
 	// Nï¿½yttï¿½ï¿½ asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron
 	// perusteella
 	protected void naytaTuotteenKuvaus(int tuotenro) {
-		Tietokanta.naytaTuotteenKuvaus(tuotenro);
+		Tietokanta.naytaKuvaus(tuotenro);
 	}
 
 	// Tulostaa asiakkaalle nï¿½kyviin tuotteiden id:t, nimet ja hinnat
@@ -78,7 +87,7 @@ class Asiakas extends Kayttaja {
 	}
 
 	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
-	protected void tulostaKoriTiedostoon(double yhteensa, String filename) {
+	protected void tulostaKoriTiedostoon(double yhteensa, String filename, String alennus) {
 
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
@@ -104,6 +113,7 @@ class Asiakas extends Kayttaja {
 
 			}
 			fwriter.write("\r\n\r\n");
+			fwriter.write("\t\t\tAlennus: " + alennus + "\r\n\r\n");
 			fwriter.write("\t\t\tYhteensï¿½: " + yhteensa + " ï¿½" );
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t" + date.toString());
@@ -171,6 +181,22 @@ class Asiakas extends Kayttaja {
 		return summa;
 	}
 	
+	public String getTarvittavatAsiakasTiedot(int i) {
+		return tarvittavatAsiakasTiedot[i];
+	}
+	
+	public int getTarvittavatAsiakasTiedotLength() {
+		return tarvittavatAsiakasTiedot.length;
+	}
+	
+	public void setAsiakasTieto(int i, String tieto) {
+		asiakasTiedot[i] = tieto;
+	}
+	
+	public String getAsiakasTieto(int i) {
+		return asiakasTiedot[i];
+	}
+	
 	//poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)
 	public void poistaTuoteKorista(String poisto)
 	{
@@ -209,6 +235,8 @@ class Asiakas extends Kayttaja {
 		return temp[2];
 	}
 	
+
+	
 }
 	
 
@@ -216,7 +244,7 @@ class Asiakas extends Kayttaja {
 class Yllapito extends Asiakas {
 
 	// tulostaa varaston tiedot
-	public void tulostaVarasto()
+	protected void tulostaVarasto()
 
 	{
 
@@ -263,5 +291,10 @@ class Yllapito extends Asiakas {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	protected void naytaTilaukset()
+	{
+		Tietokanta.tulostaTilaukset();
 	}
 }

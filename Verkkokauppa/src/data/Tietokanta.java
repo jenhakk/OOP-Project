@@ -1,13 +1,13 @@
 package data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
+import app.Tuote;
 
 public class Tietokanta {
 
@@ -50,7 +50,7 @@ public class Tietokanta {
 	}
 	//************************************************************
 	// tulostaa kaikki tuotteet tietokannasta ja kaikki niiden tiedot
-	// Yll�pito
+	// Yllï¿½pito
 	public static void haeTuotteet() {
 
 
@@ -61,7 +61,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -78,8 +78,8 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
-			System.out.println("tuoteID\t\tTuote\t\tHinta €\t\tKuvaus");
+			// Vastauksen kÃƒÂ¤sittely
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta â‚¬", "Kuvaus");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
@@ -87,7 +87,7 @@ public class Tietokanta {
 				kuvaus = resultSet.getString("kuvaus");
 				hinta = resultSet.getDouble("hinta");
 
-				System.out.println(id + "\t\t" + nimi + "\t\t" + hinta + "\t\t" + kuvaus);
+				System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", id, nimi, hinta, kuvaus);
 			}
 
 		} catch (Exception ex) {
@@ -118,12 +118,12 @@ public class Tietokanta {
 	//************************************************************
 	// hakee tieokannasta tuotteen nimen ja kuvauksen tuotenro:n perusteella
 	// Asiakas
-	public static void naytaTuotteenKuvaus(int tuotenro) {
+	public static void naytaKuvaus(int tuotenro) {
 
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -135,21 +135,24 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT nimi, kuvaus FROM ryhma1_tuotteet where tuoteID = " + tuotenro + "";
+			String querySelect = "SELECT nimi, hinta, kuvaus FROM ryhma1_tuotteet where tuoteID = " + tuotenro + "";
 
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
-			System.out.println("Tuote\tKuvaus");
+			// Vastauksen kÃƒÂ¤sittely
+			System.out.printf("%-10.10s %-10.10s %-10.10s%n", "Tuote", "Hinta (€)", "Kuvaus");
 
 			while (resultSet.next()) {
 	
 				nimi = resultSet.getString("nimi");
+				hinta = resultSet.getDouble("hinta");
 				kuvaus = resultSet.getString("kuvaus");
 				
-				System.out.println(nimi + "\t\t" + kuvaus);
-				System.out.println("");
+
+				System.out.printf("%-10.10s %-10.10s %-300.300s%n", nimi, hinta, kuvaus);
+        System.out.println("");
+
 
 			}
 
@@ -184,7 +187,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -201,9 +204,9 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
+			// Vastauksen kÃƒÂ¤sittely
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
-			System.out.println("Tuotenro\t\tTuote\t\tHinta");
+			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta");
 			
 
 			while (resultSet.next()) {
@@ -211,7 +214,7 @@ public class Tietokanta {
 				nimi = resultSet.getString("nimi");
 				hinta = resultSet.getDouble("hinta");
 
-				System.out.println(id + "\t\t" +nimi + "\t\t" + hinta);
+				System.out.printf("%-15.15s %-15.15s %-15.15s%n", id, nimi, hinta);
 
 			}
 
@@ -247,7 +250,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 		int id;
 		String nimi;
 		String kuvaus;
@@ -264,7 +267,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
+			// Vastauksen kÃƒÂ¤sittely
 
 			while (resultSet.next()) {
 		
@@ -305,7 +308,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 		int id = tuotenro;
 		String nimi;
 		String kuvaus;
@@ -352,7 +355,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		String nimi = n;
 		String kuvaus = k;
@@ -481,5 +484,77 @@ public class Tietokanta {
 						
 					}*/
 			}
+	}
+	
+public static void tulostaTilaukset() {
+
+
+
+		
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+
+		// Ota yhteys tietokantaan
+		yhdistaTietokanta();
+
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+
+		int id;
+		String nimi;
+		String kuvaus;
+		double hinta;
+		int tilausID;
+		int kpl;
+		String enimi;
+		String snimi;
+		Date pvm;
+
+		try {
+
+			// Luo MySQL-kysely
+			statement = connection.createStatement();
+
+			String querySelect = "SELECT tilausID, pvm, tuoteID, kpl, etunimi, sukunimi, nimi FROM ryhma1_tilaus JOIN ryhma1_tilauksen_tuote USING(tilausID) JOIN ryhma1_tuotteet USING(tuoteID)";
+
+			// Suorita kysely
+			resultSet = statement.executeQuery(querySelect);
+
+			// Vastauksen kÃƒÂ¤sittely
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n", "TilausID", "Pvm", "Sukunimi", "Etunimi", "Tuote", "TuoteID","kpl");
+
+			while (resultSet.next()) {
+				tilausID = resultSet.getInt("tilausID");
+				pvm = resultSet.getDate("pvm");
+				id = resultSet.getInt("tuoteID");
+				kpl = resultSet.getInt("kpl");
+				nimi = resultSet.getString("nimi");
+				enimi = resultSet.getString("etunimi");
+				snimi = resultSet.getString("sukunimi");
+				System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n",tilausID, pvm, snimi, enimi, nimi, id, kpl);
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			
+			suljeYhteys(resultSet, statement, connection);
+			
+			/* Sulje yhteys ja nollaa kyselyt
+			if (resultSet != null)
+				try {
+					resultSet.close();
+				} catch (SQLException ignore) {
+				}
+			if (statement != null)
+				try {
+					statement.close();
+				} catch (SQLException ignore) {
+				}
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException ignore) {
+				}*/
+		}
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
 }
