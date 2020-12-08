@@ -256,7 +256,8 @@ public class Verkkokauppa {
 					Asiakas.getAsiakasTieto(1), 
 					Asiakas.getAsiakasTieto(2), 
 					Asiakas.getAsiakasTieto(3), 
-					Asiakas.getAsiakasTieto(4));
+					Asiakas.getAsiakasTieto(4),
+					yhteissumma);
 			
 			for(int i = 0; i < Asiakas.ostoskori.size(); i++) {
 				Tietokanta.lisaaTuoteTilaukseen(tilausID, Asiakas.ostoskori.get(i).tuotenro, 1); 
