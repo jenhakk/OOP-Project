@@ -50,7 +50,7 @@ public class Verkkokauppa {
 			int vastausint = 0;
 
 			do {
-
+				
 				System.out.println("Anna tuotteen numero lisätääksesi tuote ostoskoriin: ");
 				boolean loopcheck = true;
 				do {

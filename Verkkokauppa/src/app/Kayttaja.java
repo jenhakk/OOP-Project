@@ -58,7 +58,7 @@ class Asiakas extends Kayttaja {
 	// N�ytt�� asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron
 	// perusteella
 	protected void naytaTuotteenKuvaus(int tuotenro) {
-		Tietokanta.naytaTuotteenKuvaus(tuotenro);
+		Tietokanta.naytaKuvaus(tuotenro);
 	}
 
 	// Tulostaa asiakkaalle n�kyviin tuotteiden id:t, nimet ja hinnat

@@ -118,7 +118,7 @@ public class Tietokanta {
 	//************************************************************
 	// hakee tieokannasta tuotteen nimen ja kuvauksen tuotenro:n perusteella
 	// Asiakas
-	public static void naytaTuotteenKuvaus(int tuotenro) {
+	public static void naytaKuvaus(int tuotenro) {
 
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
@@ -135,20 +135,21 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT nimi, kuvaus FROM ryhma1_tuotteet where tuoteID = " + tuotenro + "";
+			String querySelect = "SELECT nimi, hinta, kuvaus FROM ryhma1_tuotteet where tuoteID = " + tuotenro + "";
 
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
 			// Vastauksen kÃ¤sittely
-			System.out.println("Tuote\tKuvaus");
+			System.out.printf("%-10.10s %-10.10s %-10.10s%n", "Tuote", "Hinta (�)", "Kuvaus");
 
 			while (resultSet.next()) {
 	
 				nimi = resultSet.getString("nimi");
+				hinta = resultSet.getDouble("hinta");
 				kuvaus = resultSet.getString("kuvaus");
 				
-				System.out.println(nimi + "\t\t" + kuvaus);
+				System.out.printf("%-10.10s %-10.10s %-300.300s%n", nimi, hinta, kuvaus);
 
 			}
 
