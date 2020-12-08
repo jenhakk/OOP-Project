@@ -50,7 +50,7 @@ public class Tietokanta {
 	}
 	//************************************************************
 	// tulostaa kaikki tuotteet tietokannasta ja kaikki niiden tiedot
-	// Yll�pito
+	// Yllï¿½pito
 	public static void haeTuotteet() {
 
 
@@ -61,7 +61,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -78,8 +78,8 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
-			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta €", "Kuvaus");
+			// Vastauksen kÃƒÂ¤sittely
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta â‚¬", "Kuvaus");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
@@ -123,7 +123,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -140,8 +140,8 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
-			System.out.printf("%-10.10s %-10.10s %-10.10s%n", "Tuote", "Hinta (�)", "Kuvaus");
+			// Vastauksen kÃƒÂ¤sittely
+			System.out.printf("%-10.10s %-10.10s %-10.10s%n", "Tuote", "Hinta (€)", "Kuvaus");
 
 			while (resultSet.next()) {
 	
@@ -149,7 +149,10 @@ public class Tietokanta {
 				hinta = resultSet.getDouble("hinta");
 				kuvaus = resultSet.getString("kuvaus");
 				
+
 				System.out.printf("%-10.10s %-10.10s %-300.300s%n", nimi, hinta, kuvaus);
+        System.out.println("");
+
 
 			}
 
@@ -184,7 +187,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -201,7 +204,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
+			// Vastauksen kÃƒÂ¤sittely
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta");
 			
@@ -247,7 +250,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 		int id;
 		String nimi;
 		String kuvaus;
@@ -264,7 +267,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
+			// Vastauksen kÃƒÂ¤sittely
 
 			while (resultSet.next()) {
 		
@@ -305,7 +308,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 		int id = tuotenro;
 		String nimi;
 		String kuvaus;
@@ -352,7 +355,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		String nimi = n;
 		String kuvaus = k;
@@ -493,7 +496,7 @@ public static void tulostaTilaukset() {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃ¤t tulostusta varten
+		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
 
 		int id;
 		String nimi;
@@ -515,7 +518,7 @@ public static void tulostaTilaukset() {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃ¤sittely
+			// Vastauksen kÃƒÂ¤sittely
 			System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n", "TilausID", "Pvm", "Sukunimi", "Etunimi", "Tuote", "TuoteID","kpl");
 
 			while (resultSet.next()) {
