@@ -256,7 +256,8 @@ public class Verkkokauppa {
 					Asiakas.getAsiakasTieto(1), 
 					Asiakas.getAsiakasTieto(2), 
 					Asiakas.getAsiakasTieto(3), 
-					Asiakas.getAsiakasTieto(4));
+					Asiakas.getAsiakasTieto(4),
+					yhteissumma);
 			
 			for(int i = 0; i < Asiakas.ostoskori.size(); i++) {
 				Tietokanta.lisaaTuoteTilaukseen(tilausID, Asiakas.ostoskori.get(i).tuotenro, 1); 
@@ -294,52 +295,39 @@ public class Verkkokauppa {
 			} while (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055"));
 
 			System.out.println("MitĂ¤ haluaisit tehdĂ¤?");
-			System.out.println("Tulosta varasto: valitse (T)");
-			System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
-			System.out.println("LisĂ¤Ă¤ tuote varastoon: valitse (L)");
-			System.out.println("Näytä tämän hetkiset tilaukset: valitse (N)");
 			
-
 			do {
+				System.out.println("Tulosta varasto: valitse (T)");
+				System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
+				System.out.println("LisĂ¤Ă¤ tuote varastoon: valitse (L)");
+				System.out.println("Näytä tämän hetkiset tilaukset: valitse (N)");
+				System.out.println("Poistu (P)");
+				
 				vastaus = input.nextLine();
 
 				if (vastaus.equalsIgnoreCase("t")) {
 					Yllapito.tulostaVarasto();
-				}
-
-				if (vastaus.equalsIgnoreCase("m")) {
+				} else if (vastaus.equalsIgnoreCase("m")) {
 
 					Yllapito.tulostaVarasto();
-					int loopcheck = 1;
-					do {
 
+					do {
 						System.out.println("Anna tuotenro:");
-						loopcheck = 1;
 						try {
 							tuotenro = Integer.parseInt(input.nextLine());
-						} catch (Exception e) {
-							loopcheck = 0;
-						}
-						System.out.println("Anna uusi hinta esim (2.50)");
-						try {
+							System.out.println("Anna uusi hinta esim (2.50)");
 							hinta = Double.parseDouble(input.nextLine());
+							break;
 						} catch (Exception e) {
-							loopcheck = 0;
-							System.out.println("asd");
+							System.out.println("Virheellinen sy�te, yrit� uudelleen.");
 						}
-
-						if (loopcheck == 0) {
-							System.out.println("Virheellinen syĂ¶te luvuissa, yritĂ¤ uudestaan.");
-						}
-					} while (loopcheck == 0);
+					} while(true);
 
 					Yllapito.muutaHintaa(hinta, tuotenro);
 
 					Yllapito.tulostaVarasto();
 
-				}
-
-				if (vastaus.equalsIgnoreCase("l")) {
+				} else if (vastaus.equalsIgnoreCase("l")) {
 
 					do {
 						System.out.println("Anna tuotteen nimi:");
@@ -357,22 +345,16 @@ public class Verkkokauppa {
 					} while (vastaus.equals("k"));
 
 					Yllapito.tulostaVarasto();
-				}
-				
-				if (vastaus.equalsIgnoreCase("n")) {
+				} else if (vastaus.equalsIgnoreCase("n")) {
 					
 					Yllapito.naytaTilaukset();
+				} else {
+					if(!vastaus.equalsIgnoreCase("p")) {
+						System.out.println("Virheellinen sy�te, yrit� uudelleen.");
+					}
 				}
 
-				if (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m")
-						&& !vastaus.equalsIgnoreCase("l") && !vastaus.equalsIgnoreCase("n")) {
-
-					System.out.println("Virheellinen syĂ¶te, yritĂ¤ uudelleen.");
-
-				}
-
-			} while (!vastaus.equalsIgnoreCase("t") && !vastaus.equalsIgnoreCase("m")
-					&& !vastaus.equalsIgnoreCase("l") && !vastaus.equalsIgnoreCase("n"));
+			} while (!vastaus.equalsIgnoreCase("p"));
 
 		}
 

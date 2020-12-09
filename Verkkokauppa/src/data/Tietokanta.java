@@ -396,7 +396,7 @@ public class Tietokanta {
 		}
 	}
 	
-	public static int lisaaTilaus(String enimi, String snimi, String sposti, String puh, String ost) {
+	public static int lisaaTilaus(String enimi, String snimi, String sposti, String puh, String ost, double yhteishinta) {
 		yhdistaTietokanta();
 		
 		int tilausID = 0;
@@ -406,8 +406,8 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String queryInsert = "INSERT INTO ryhma1_tilaus (etunimi, sukunimi, sahkoposti, puhelin, osoite)"
-					+ "VALUES ('"+enimi+"','"+snimi+"','"+sposti+"','"+puh+"','"+ost+"')";
+			String queryInsert = "INSERT INTO ryhma1_tilaus (etunimi, sukunimi, sahkoposti, puhelin, osoite, yhteishinta)"
+					+ "VALUES ('"+enimi+"','"+snimi+"','"+sposti+"','"+puh+"','"+ost+"',"+yhteishinta+")";
 
 			// Suorita kysely
 			statement.execute(queryInsert, Statement.RETURN_GENERATED_KEYS);
