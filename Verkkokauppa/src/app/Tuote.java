@@ -30,7 +30,7 @@ public class Tuote {
 		
 		System.out.println("Nimi: " + nimi);
 		//System.out.println("Kuvaus: " + kuvaus);
-		System.out.println("Hinta: " + hinta);
+		System.out.printf("Hinta: %.2f �\n", hinta);
 		//System.out.println("Tuote nro: " + tuotenro);
 		System.out.println("kappalemäärä: " + kappalemaara);
 	}
