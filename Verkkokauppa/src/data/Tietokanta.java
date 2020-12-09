@@ -513,7 +513,7 @@ public static void tulostaTilaukset() {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String querySelect = "SELECT tilausID, pvm, tuoteID, kpl, etunimi, sukunimi, nimi FROM ryhma1_tilaus JOIN ryhma1_tilauksen_tuote USING(tilausID) JOIN ryhma1_tuotteet USING(tuoteID)";
+			String querySelect = "SELECT tilausID, pvm, tuoteID, kpl, etunimi, sukunimi, nimi FROM ryhma1_tilaus JOIN ryhma1_tilauksen_tuote USING(tilausID) JOIN ryhma1_tuotteet USING(tuoteID) ORDER BY tilausID";
 
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);

@@ -17,6 +17,7 @@ public class Kayttaja {
 
 	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
+	ArrayList<Kori> ostoskori2 = new ArrayList<Kori>();
 
 	public String filename = "src/data/kuitti.txt";
 
@@ -24,11 +25,12 @@ public class Kayttaja {
 	protected String kuvaus;
 	protected double hinta;
 	protected int tuotenro;
+	protected int kappalemaara;
 
 	// private int kpl;
 
 	Tuote tuote = new Tuote(nimi, kuvaus, hinta, tuotenro);
-	Kori ostos = new Kori(tuotenro, nimi, hinta);
+	Kori ostos = new Kori(tuotenro, nimi, hinta, kappalemaara);
 }
 
 //************************************************************
@@ -40,7 +42,7 @@ class Asiakas extends Kayttaja {
 	protected String puhelin;
 	protected String osoite;
 	
-	private String[] tarvittavatAsiakasTiedot = {"Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite"};
+	private String[] tarvittavatAsiakasTiedot = {"Etunimi", "Sukunimi", "Sï¿½hkï¿½posti", "Puhelin", "Osoite"};
 	private String[] asiakasTiedot = new String[5];
 	
 	int i;
@@ -174,7 +176,7 @@ class Asiakas extends Kayttaja {
 		for (int i = 0; i < ostoskori.size(); i++)
 			
 		{
-			summa = summa + (ostoskori.get(i).hinta);
+			summa = summa + (ostoskori.get(i).hinta) * (ostoskori.get(i).kappalemaara);
 		
 		}
 		
