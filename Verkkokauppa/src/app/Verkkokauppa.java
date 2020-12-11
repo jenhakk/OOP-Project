@@ -18,7 +18,7 @@ public class Verkkokauppa {
 		String nimi;
 		double hinta = 0;
 		String kuvaus;
-		String alennus = "";
+		String alennus = "0 %";
 		int kappalemaara;
 		int tuotenro = 0;
 		double yhteissumma;
@@ -223,6 +223,7 @@ public class Verkkokauppa {
 
 			if (vastaus.equalsIgnoreCase("k"))
 				do {
+					
 					System.out.println("Anna alennuskoodi:");
 					vastaus = input.nextLine();
 
@@ -254,7 +255,7 @@ public class Verkkokauppa {
 
 						System.out.printf("Ostostesi yhteissumma on nyt: %.2f €\r\n", yhteissumma);
 						break;
-
+					
 					} else {
 						alennus = "0 %";
 						System.out.println(
@@ -262,6 +263,7 @@ public class Verkkokauppa {
 					}
 
 				} while (!vastaus.equalsIgnoreCase("e"));
+			
 			
 			System.out.println("Täytä asiakastietosi");
 			
@@ -292,7 +294,6 @@ public class Verkkokauppa {
 			}
 			
 			// kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
-
 			// ja sen jĂ¤lkeen tekstitiedoston tyhjennys
 			Asiakas.tulostaKoriTiedostoon(yhteissumma, filename, alennus);
 

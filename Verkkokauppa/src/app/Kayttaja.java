@@ -96,33 +96,44 @@ class Asiakas extends Kayttaja {
 			java.util.Date date = new java.util.Date();
 			
 			fwriter.write("\r\n");
-			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
+			fwriter.write("\t\t\tVerkkokauppa Kuokka ja Nakki");
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\tTï¿½ssï¿½ kuitti ostoksistasi");
+			fwriter.write("\t\t\tTï¿½ssï¿½ kuitti ostoksistasi");
 			fwriter.write("\r\n\r\n");
 
 			for (int i = 0; i < ostoskori.size(); i++)
 
 			{
-				fwriter.write("\t\t\t" + ostoskori.get(i).nimi);
-				fwriter.write("\t");
-				String hinta = Double.toString(ostoskori.get(i).hinta);
-				fwriter.write(hinta);
-				fwriter.write(" ï¿½");
+//				fwriter.write(("\t\t" + ostoskori.get(i).nimi));
+//				fwriter.write("\t");
+//				String hinta = Double.toString(ostoskori.get(i).hinta);
+//				fwriter.write(hinta);
+//				fwriter.write(" €");
+//				fwriter.write("\t");
+//				String kpl = Integer.toString(ostoskori.get(i).kappalemaara);
+//				fwriter.write(kpl);
+//				fwriter.write(" kpl");
+//				fwriter.write("\r\n");
+				
+				String hinta = String.format("%.2f", (ostoskori.get(i).hinta));
+				String kpl = Integer.toString(ostoskori.get(i).kappalemaara);
+				
+				fwriter.write(String.format("\t\t\t%-15.15s %-6.7s %-1.1s %-1.1s %-2.3s%n", ostoskori.get(i).nimi, hinta, "€", kpl, "kpl"));
+				
 				fwriter.write("\r\n");
 
 			}
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t\tAlennus: " + alennus + "\r\n\r\n");
-			fwriter.write("\t\t\tYhteensï¿½: " + yhteensa + " ï¿½" );
+			fwriter.write("\t\t\t\tAlennus: " + alennus + "\r\n\r\n");
+			fwriter.write(String.format("\t\t\t\tYhteensä: %.2f € ",yhteensa));
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\t" + date.toString());
+			fwriter.write("\t\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
+			fwriter.write("\t\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
 			fwriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
