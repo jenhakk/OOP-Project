@@ -40,13 +40,13 @@ class Asiakas extends Kayttaja {
 	protected String puhelin;
 	protected String osoite;
 
-	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "S�hk�posti", "Puhelin", "Osoite", "Maksutapa (Visa, Klarna, Pankki)" };
+	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite", "Maksutapa (Visa, Klarna, Pankki)" };
 	private String[] asiakasTiedot = new String[6];
 
 	int i;
 
-	// N�ytt�� asiakkaalle yksitt�isen tuotteen nimen ja hinnan, palauttaa
-	// stringin�
+	// Näyttää asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
+	// stringinä
 	protected String naytaTuotteenTiedot(int tuotenro)
 
 	{
@@ -55,25 +55,25 @@ class Asiakas extends Kayttaja {
 		return testi;
 	}
 
-	// N�ytt�� asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron
+	// Näyttää asiakkaalle tietyn tuotteen nimen ja kuvauksen tuotenumeron
 	// perusteella
 	protected void naytaTuotteenKuvaus(int tuotenro) {
 		Tietokanta.naytaKuvaus(tuotenro);
 	}
 
-	// Tulostaa asiakkaalle n�kyviin tuotteiden id:t, nimet ja hinnat
+	// Tulostaa asiakkaalle näkyviin tuotteiden id:t, nimet ja hinnat
 	protected void tulostaTuotelista() {
 		Tietokanta.naytaTuotelista();
 	}
 
-	// Lisää tuotteen ostoskoriin
+	// LisÃ¤Ã¤ tuotteen ostoskoriin
 	protected void lisaaTuoteKoriin()
 
 	{
 		ostoskori.add(ostos);
 	}
 
-	// Lista-ostoskorin sis�lt�
+	// Lista-ostoskorin sisältö
 	protected void naytaOstoskori() {
 		System.out.println(
 				"-----------------------------------------------------------------------------------------------------------------------------------------");
@@ -88,18 +88,18 @@ class Asiakas extends Kayttaja {
 	}
 
 	// Tulostaa asiakkaan ostoskorin kuitiksi tiedostoon
-	protected void tulostaKoriTiedostoon(double yhteensa, String filename, String alennus) {
+	protected void tulostaKoriTiedostoon(double yhteensa, String filename, String alennus, String maksutapa) {
 
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
 			java.util.Date date = new java.util.Date();
 
 			fwriter.write("\r\n");
-			fwriter.write("\t\t'~,.,~'�~,.,~�'~,.,~'�~,.,~�'~,.,~''~,.,~'");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\t\tVerkkokauppa Kuokka ja Nakki");
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\t\tT�ss� kuitti ostoksistasi");
+			fwriter.write("\t\t\tTässä kuitti ostoksistasi");
 			fwriter.write("\r\n\r\n");
 
 			for (int i = 0; i < ostoskori.size(); i++)
@@ -110,7 +110,7 @@ class Asiakas extends Kayttaja {
 				String kpl = Integer.toString(ostoskori.get(i).kappalemaara);
 
 				fwriter.write(String.format("\t\t\t%-15.15s %-6.7s %-1.1s %-1.1s %-2.3s%n", ostoskori.get(i).nimi,
-						hinta, "�", kpl, "kpl"));
+						hinta, "€", kpl, "kpl"));
 
 				fwriter.write("\r\n");
 
@@ -118,13 +118,15 @@ class Asiakas extends Kayttaja {
 
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\t\t\tAlennus: " + alennus + "\r\n\r\n");
-			fwriter.write(String.format("\t\t\t\tYhteens�: %.2f � ", yhteensa));
+			fwriter.write(String.format("\t\t\t\tYhteensä: %.2f € ", yhteensa));
+			fwriter.write("\r\n\r\n");
+			fwriter.write("\t\t\t\tMaksutapa: " + maksutapa);
 			fwriter.write("\r\n\r\n\r\n");
 			fwriter.write("\t\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\tKiitos k�ynnist� ja tervetuloa uudelleen!");
+			fwriter.write("\t\tKiitos käynnistä ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t'~,.,~'�~,.,~�'~,.,~'�~,.,~�'~,.,~''~,.,~'");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
 			fwriter.write("\r\n\r\n");
 			fwriter.close();
 		} catch (IOException e) {
@@ -154,7 +156,7 @@ class Asiakas extends Kayttaja {
 		return alltext;
 	}
 
-	// tyhjent�� tekstitiedoston
+	// tyhjentï¿½ï¿½ tekstitiedoston
 	protected void tyhjennaKuitti(String filename) {
 
 		try {
