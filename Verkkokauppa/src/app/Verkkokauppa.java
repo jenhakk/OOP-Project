@@ -293,13 +293,22 @@ public class Verkkokauppa {
 					System.out.println("Väärä syöte");
 					i--;
 				}
-
-				Asiakas.setAsiakasTieto(i, vastaus);
+				
+				// Jos ollaan maksutavan kohdalla
+				if(i == 5) {
+					if(vastaus.equals("Visa") || vastaus.equals("Klarna") || vastaus.equals("Pankki")) {
+						Asiakas.setAsiakasTieto(i, vastaus);
+					} else {
+						i--;
+					}
+				} else {
+					Asiakas.setAsiakasTieto(i, vastaus);
+				}
 			}
 
 			//Asiakastiedot lis�t��n tietokantaan (tilauksen_tuote)
 			int tilausID = Tietokanta.lisaaTilaus(Asiakas.getAsiakasTieto(0), Asiakas.getAsiakasTieto(1),
-					Asiakas.getAsiakasTieto(2), Asiakas.getAsiakasTieto(3), Asiakas.getAsiakasTieto(4), yhteissumma);
+					Asiakas.getAsiakasTieto(2), Asiakas.getAsiakasTieto(3), Asiakas.getAsiakasTieto(4), yhteissumma, Asiakas.getAsiakasTieto(5));
 
 			for (int i = 0; i < Asiakas.ostoskori.size(); i++) {
 				Tietokanta.lisaaTuoteTilaukseen(tilausID, Asiakas.ostoskori.get(i).tuotenro,
