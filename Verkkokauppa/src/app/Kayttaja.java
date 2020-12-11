@@ -40,8 +40,8 @@ class Asiakas extends Kayttaja {
 	protected String puhelin;
 	protected String osoite;
 
-	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "Sï¿½hkï¿½posti", "Puhelin", "Osoite" };
-	private String[] asiakasTiedot = new String[5];
+	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite", "Maksutapa (Visa, Klarna, Pankki)" };
+	private String[] asiakasTiedot = new String[6];
 
 	int i;
 
