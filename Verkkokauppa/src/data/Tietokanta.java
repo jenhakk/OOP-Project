@@ -30,7 +30,8 @@ public class Tietokanta {
 			ex.printStackTrace();
 		}
 	}
-	
+	//************************************************************
+	//Yhteyden sulkeminen
 	private static void suljeYhteys(ResultSet result, Statement statement, Connection connection) {
 		if (result != null)
 			try {
@@ -303,6 +304,7 @@ public class Tietokanta {
 		return palautus;
 	}
 	//************************************************************
+	//Ylläpito voi muuttaa tuotteen hintaa
 	public static void muutaHintaa(double h, int tuotenro) {
 
 		// Ota yhteys tietokantaan
@@ -350,6 +352,7 @@ public class Tietokanta {
 	}
 	
 	//************************************************************
+	//Ylläpito voi lisätä uuden tuotteen varastoon
 	public static void lisaaUusiTuote(String n, String k, double h) {
 
 		// Ota yhteys tietokantaan
@@ -395,7 +398,7 @@ public class Tietokanta {
 				}*/
 		}
 	}
-	
+	//************************************************************
 	public static int lisaaTilaus(String enimi, String snimi, String sposti, String puh, String ost, double yhteishinta) {
 		yhdistaTietokanta();
 		
@@ -445,6 +448,7 @@ public class Tietokanta {
 		return tilausID;
 	}
 	
+	//************************************************************
 	public static void lisaaTuoteTilaukseen(int tilausID, int tuoteID, int kpl) {
 		yhdistaTietokanta();
 			
@@ -486,6 +490,7 @@ public class Tietokanta {
 			}
 	}
 	
+	//************************************************************
 public static void tulostaTilaukset() {
 
 
