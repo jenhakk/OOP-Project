@@ -28,13 +28,13 @@ public class Verkkokauppa {
 		String kuittihistoriatxt = "src/data/kuittihistoria.txt";
 
 		System.out.println("Tervetuloa Verkkokauppaan!");
-		System.out.println("Oletko asiakas vai yllĂ¤pito? (a/y)");
+		System.out.println("Oletko asiakas vai ylläpito? (a/y)");
 		do {
 			vastaus = input.nextLine();
 
 			if (!vastaus.equalsIgnoreCase("a") && !vastaus.equalsIgnoreCase("y")) {
 
-				System.out.println("Virheellinen syĂ¶te, yritĂ¤ uudelleen.");
+				System.out.println("Virheellinen syöte, yritä uudelleen.");
 
 			}
 
@@ -51,10 +51,10 @@ public class Verkkokauppa {
 			Asiakas.tulostaTuotelista();
 
 			do {
-				//Asiakas voi tuotenumeron perusteella tarkastella tuotetta tarkemmin tai lis�t� ostoskoriin
+				//Asiakas voi tuotenumeron perusteella tarkastella tuotetta tarkemmin tai lisï¿½tï¿½ ostoskoriin
 				do {
 					do {
-						System.out.println("Anna tuotteen tuotenumero lisĂ¤tĂ¤Ă¤ksesi tuote ostoskoriin: ");
+						System.out.println("Anna tuotteen tuotenumero lisätäksesi tuote ostoskoriin: ");
 						System.out.println("Voit lukea tuotteen tarkemmat tiedot valitsemalla (t)");
 						vastaus = input.nextLine();
 						vastaus2 = vastaus;
@@ -68,7 +68,7 @@ public class Verkkokauppa {
 									vastausint = Integer.parseInt(input.nextLine());
 								} catch (Exception e) {
 									check = 0;
-									System.out.println("Virheellinen syote, yritĂ¤ uudelleen.");
+									System.out.println("Virheellinen syote, yritä uudelleen.");
 								}
 							} while (check == 0);
 							
@@ -84,7 +84,7 @@ public class Verkkokauppa {
 						try {
 							vastausint = Integer.parseInt(vastaus);
 						} catch (Exception e) {
-							System.out.println("Virheellinen syĂ¶te, yritĂ¤ uudelleen.");
+							System.out.println("Virheellinen syöte, yritä uudelleen.");
 							
 							
 							check = 0;
@@ -99,7 +99,7 @@ public class Verkkokauppa {
 				String tuote = Asiakas.palautaNimi(teksti);
 				double hintaDbl = Double.parseDouble(Asiakas.palautaHinta(teksti));
 				
-				//Kappalem��r�n kysely
+				//Kappalemï¿½ï¿½rï¿½n kysely
 				System.out.println("Montako kappaletta haluat?");
 				do {
 					vastaus = input.nextLine();
@@ -108,7 +108,7 @@ public class Verkkokauppa {
 					try {
 						vastausint = Integer.parseInt(vastaus);
 					} catch (Exception e) {
-						System.out.println("Virheellinen syĂ¶te, yritĂ¤ uudelleen.");
+						System.out.println("Virheellinen syöte, yritä uudelleen.");
 						check = 0;
 					}
 				} while (check == 0);
@@ -135,27 +135,27 @@ public class Verkkokauppa {
 //                        }
 //                    }
 
-				System.out.println("Voit lisĂ¤tĂ¤ uuden tuotteen ostoskoriin valitsemalla (k)");
-				System.out.println("Voit siirtyĂ¤ ostoskoriin valitsemalla (o)");
+				System.out.println("Voit lisätä uuden tuotteen ostoskoriin valitsemalla (k)");
+				System.out.println("Voit siirtyä ostoskoriin valitsemalla (o)");
 				System.out.println("Voit lukea tuotteen tarkemmat tiedot valitsemalla (t)");
 
 				do {
 					vastaus = input.nextLine();
 					
-					//Asiakas voi tarkastella ostoskorin sis�lt�� valitsemalla "o", kori tulostetaan
+					//Asiakas voi tarkastella ostoskorin sisï¿½ltï¿½ï¿½ valitsemalla "o", kori tulostetaan
 					if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("o"))
 							&& (!vastaus.equalsIgnoreCase("t"))) {
-						System.out.println("Virheellinen syĂ¶te, yritĂ¤ uudelleen.");
+						System.out.println("Virheellinen syöte, yritä uudelleen.");
 
 					}
 					if (vastaus.equalsIgnoreCase("o")) {
 						do {
-							System.out.println("Ostoskorisi sisĂ¤ltĂ¤Ă¤:");
+							System.out.println("Ostoskorisi sisltää:");
 							System.out.println("");
 							Asiakas.naytaOstoskori();
-							System.out.println("Jos haluat lisĂ¤tĂ¤ uuden tuotteen ostoskoriin, valitse (k)");
+							System.out.println("Jos haluat lisätä uuden tuotteen ostoskoriin, valitse (k)");
 							System.out.println("Voit poistaa tuotteen ostoskorista valitsemalla (p)");
-							System.out.println("Jos haluat hyvĂ¤ksyĂ¤ tilauksen, valitse (e)");
+							System.out.println("Jos haluat hyväksyä tilauksen, valitse (e)");
 
 							vastaus = input.nextLine();
 							if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e"))
@@ -173,7 +173,7 @@ public class Verkkokauppa {
 						} while (!vastaus.equalsIgnoreCase("e") && !vastaus.equalsIgnoreCase("k"));
 
 					}
-						//Jos asiakas kirjoittaa "t", h�n voi tarkastella tietty� tuotetta tarkemmin
+						//Jos asiakas kirjoittaa "t", hï¿½n voi tarkastella tiettyï¿½ tuotetta tarkemmin
 					if (vastaus.equalsIgnoreCase("t")) {
 						System.out.println("Anna tuotteen tuotenumero:");
 
@@ -188,8 +188,8 @@ public class Verkkokauppa {
 							}
 						} while (check == 0);
 						Asiakas.naytaTuotteenKuvaus(vastausint);
-						System.out.println("Voit lisĂ¤tĂ¤ uuden tuotteen ostoskoriin valitsemalla (k)");
-						System.out.println("Voit siirtyĂ¤ ostoskoriin valitsemalla (o)");
+						System.out.println("Voit lisätä uuden tuotteen ostoskoriin valitsemalla (k)");
+						System.out.println("Voit siirtyä ostoskoriin valitsemalla (o)");
 						System.out.println("Voit lukea tuotteen tarkemmat tiedot valitsemalla (t)");
 
 					}
@@ -207,8 +207,8 @@ public class Verkkokauppa {
 //                }
 //            }
 			
-			//K�yd��n ostoskori l�pi, mik�li samaa tuotetta on lis�tty moneen kertaan, duplikaatit poistetaan
-			//ja kpl-m��r�t lasketaan yhteen
+			//Kï¿½ydï¿½ï¿½n ostoskori lï¿½pi, mikï¿½li samaa tuotetta on lisï¿½tty moneen kertaan, duplikaatit poistetaan
+			//ja kpl-mï¿½ï¿½rï¿½t lasketaan yhteen
 			for (int i = 0; i < Asiakas.ostoskori.size(); i++) {
 				for (int j = i + 1; j < Asiakas.ostoskori.size(); j++) {
 					if (Asiakas.ostoskori.get(i).tuotenro == Asiakas.ostoskori.get(j).tuotenro) {
@@ -306,24 +306,29 @@ public class Verkkokauppa {
 				}
 			}
 
-			//Asiakastiedot lis�t��n tietokantaan (tilauksen_tuote)
+			//Asiakastiedot lisätään tietokantaan (tilauksen_tuote)
 			int tilausID = Tietokanta.lisaaTilaus(Asiakas.getAsiakasTieto(0), Asiakas.getAsiakasTieto(1),
 					Asiakas.getAsiakasTieto(2), Asiakas.getAsiakasTieto(3), Asiakas.getAsiakasTieto(4), yhteissumma, Asiakas.getAsiakasTieto(5));
-
+			
+			String maksutapa = Asiakas.getAsiakasTieto(5);
+			
+			
 			for (int i = 0; i < Asiakas.ostoskori.size(); i++) {
 				Tietokanta.lisaaTuoteTilaukseen(tilausID, Asiakas.ostoskori.get(i).tuotenro,
 						Asiakas.ostoskori.get(i).kappalemaara);
 			}
 
+			System.out.println("Kiitos käynnistä!");
+			
 			// kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
-			// ja sen jĂ¤lkeen tekstitiedoston tyhjennys
-			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittitxt, alennus);
-			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittihistoriatxt, alennus);
+			// ja sen jÄ‚Â¤lkeen tekstitiedoston tyhjennys
+			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittitxt, alennus, maksutapa);
+			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittihistoriatxt, alennus, maksutapa);
 
 			System.out.println(Asiakas.tulostaKuittiKonsoliin(kuittitxt));
 			Asiakas.tyhjennaKuitti(kuittitxt);
 			
-			System.out.println("Kiitos k�ynnist�!");
+			
 
 		}
 
@@ -340,26 +345,26 @@ public class Verkkokauppa {
 				vastaus = input.nextLine();
 				vastauscrypt = Yllapito.crypt(vastaus);
 				if (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055")) {
-					System.out.println("VĂ¤Ă¤rĂ¤ pin-koodi, yritĂ¤ uudelleen: ");
+					System.out.println("Väärä pin-koodi, yritä uudelleen: ");
 				}
 			} while (!vastauscrypt.equals("81dc9bdb52d04dc20036dbd8313ed055"));
 
-			System.out.println("MitĂ¤ haluaisit tehdĂ¤?");
+			System.out.println("Mitä haluaisit tehdä?");
 
 			do {
 				System.out.println("Tulosta varasto: valitse (T)");
 				System.out.println("Muuttaa tuotteen hintaa: valitse (M)");
-				System.out.println("LisĂ¤Ă¤ tuote varastoon: valitse (L)");
+				System.out.println("Lisää tuote varastoon: valitse (L)");
 				System.out.println("Näytä tämän hetkiset tilaukset: valitse (N)");
 				System.out.println("Poistu (P)");
 
 				vastaus = input.nextLine();
 
-				// Yll�pito voi tulostaa tuotevaraston
+				// Ylläpito voi tulostaa tuotevaraston
 				if (vastaus.equalsIgnoreCase("t")) {
 					Yllapito.tulostaVarasto();
 
-					// Yll�pito voi muuttaa tietyn tuotteen hintaa
+					// Ylläpito voi muuttaa tietyn tuotteen hintaa
 				} else if (vastaus.equalsIgnoreCase("m")) {
 
 					Yllapito.tulostaVarasto();
@@ -372,7 +377,7 @@ public class Verkkokauppa {
 							hinta = Double.parseDouble(input.nextLine());
 							break;
 						} catch (Exception e) {
-							System.out.println("Virheellinen sy�te, yrit� uudelleen.");
+							System.out.println("Virheellinen syöte, yritä uudelleen.");
 						}
 					} while (true);
 
@@ -380,7 +385,7 @@ public class Verkkokauppa {
 
 					Yllapito.tulostaVarasto();
 
-					// Yll�pito voi lis�t� uuden tuotteen varastoon
+					// Ylläpito voi lisätä uuden tuotteen varastoon
 				} else if (vastaus.equalsIgnoreCase("l")) {
 
 					do {
@@ -393,7 +398,7 @@ public class Verkkokauppa {
 
 						Yllapito.lisaaUusiTuote(nimi, kuvaus, hinta);
 
-						System.out.println("Haluatko lisĂ¤tĂ¤ uuden tuotteen varastoon? (k/e)");
+						System.out.println("Haluatko lisätä uuden tuotteen varastoon? (k/e)");
 						vastaus = input.nextLine();
 
 					} while (vastaus.equals("k"));
@@ -401,17 +406,17 @@ public class Verkkokauppa {
 					Yllapito.tulostaVarasto();
 				} else if (vastaus.equalsIgnoreCase("n")) {
 
-					// Yll�pito voi tarkastella tehtyj� asiakastilauksia
+					// Ylläpito voi tarkastella tehtyjä asiakastilauksia
 					Yllapito.naytaTilaukset();
 				} else {
 					if (!vastaus.equalsIgnoreCase("p")) {
-						System.out.println("Virheellinen sy�te, yrit� uudelleen.");
+						System.out.println("Virheellinen syöte, yritä uudelleen.");
 					}
 				}
 
 			} while (!vastaus.equalsIgnoreCase("p"));
 			System.out.println("");
-			System.out.println("Uloskirjautuminen onnistui. N�hd��n seuraavalla kerralla!");
+			System.out.println("Uloskirjautuminen onnistui. Nähdään seuraavalla kerralla!");
 
 		}
 

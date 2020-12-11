@@ -60,7 +60,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		int id;
 		String nimi;
@@ -77,8 +77,8 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
-			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta â‚¬", "Kuvaus");
+			// Vastauksen käsittely
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta €", "Kuvaus");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
@@ -109,7 +109,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 		String nimi;
 		String kuvaus;
 		double hinta;
@@ -124,7 +124,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
+			// Vastauksen käsittely
 			System.out.printf("%-10.10s %-10.10s %-10.10s%n", "Tuote", "Hinta (€)", "Kuvaus");
 
 			while (resultSet.next()) {
@@ -154,7 +154,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		int id;
 		String nimi;
@@ -172,7 +172,7 @@ public class Tietokanta {
 
 			// Vastauksen kÃƒÂ¤sittely
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta �");
+			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta €");
 			
 
 			while (resultSet.next()) {
@@ -201,7 +201,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 		int id;
 		String nimi;
 		double hinta;
@@ -217,7 +217,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
+			// Vastauksen käsittely
 
 			while (resultSet.next()) {
 		
@@ -236,7 +236,7 @@ public class Tietokanta {
 		return palautus;
 	}
 	//************************************************************
-	//Yll�pito voi muuttaa tuotteen hintaa
+	//Yll�pito voi muuttaa tuotteen hintaa
 	public static void muutaHintaa(double h, int tuotenro) {
 
 		// Ota yhteys tietokantaan
@@ -261,13 +261,13 @@ public class Tietokanta {
 	}
 	
 	//************************************************************
-	//Yll�pito voi lis�t� uuden tuotteen varastoon
+	//Ylläpito voi lisää uuden tuotteen varastoon
 	public static void lisaaUusiTuote(String n, String k, double h) {
 
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		String nimi = n;
 		String kuvaus = k;
@@ -353,7 +353,7 @@ public static void tulostaTilaukset() {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		int id;
 		String nimi;
@@ -373,7 +373,7 @@ public static void tulostaTilaukset() {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
+			// Vastauksen käsittely
 			System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n", "TilausID", "Pvm", "Sukunimi", "Etunimi", "Tuote", "TuoteID","kpl");
 
 			while (resultSet.next()) {
