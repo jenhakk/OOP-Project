@@ -17,9 +17,7 @@ public class Kayttaja {
 
 	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
-	ArrayList<Kori> ostoskori2 = new ArrayList<Kori>();
-
-	public String filename = "src/data/kuitti.txt";
+	ArrayList<Kori> ostoskori2 = new ArrayList<Kori>();	
 
 	protected String nimi;
 	protected String kuvaus;
@@ -125,6 +123,7 @@ class Asiakas extends Kayttaja {
 				fwriter.write("\r\n");
 
 			}
+			
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\t\t\tAlennus: " + alennus + "\r\n\r\n");
 			fwriter.write(String.format("\t\t\t\tYhteensä: %.2f € ",yhteensa));
@@ -134,6 +133,7 @@ class Asiakas extends Kayttaja {
 			fwriter.write("\t\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
 			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
+			fwriter.write("\r\n\r\n");
 			fwriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
