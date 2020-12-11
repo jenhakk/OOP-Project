@@ -85,8 +85,12 @@ public class Tietokanta {
 				nimi = resultSet.getString("nimi");
 				kuvaus = resultSet.getString("kuvaus");
 				hinta = resultSet.getDouble("hinta");
+				String hintastr = String.format("%.2f", hinta);
+				
+				
 
-				System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", id, nimi, hinta, kuvaus);
+				System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", id, nimi, hintastr, kuvaus);
+
 			}
 
 		} catch (Exception ex) {
@@ -155,7 +159,7 @@ public class Tietokanta {
 		int id;
 		String nimi;
 		double hinta;
-
+		
 		try {
 
 			// Luo MySQL-kysely
@@ -168,15 +172,17 @@ public class Tietokanta {
 
 			// Vastauksen kÃƒÂ¤sittely
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta");
+			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta �");
 			
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
 				nimi = resultSet.getString("nimi");
 				hinta = resultSet.getDouble("hinta");
+				String hintastr = String.format("%.2f", hinta);
 
-				System.out.printf("%-15.15s %-15.15s %-15.15s%n", id, nimi, hinta);
+
+				System.out.printf("%-15.15s %-15.15s %-15.15s%n", id, nimi, hintastr);
 
 			}
 
