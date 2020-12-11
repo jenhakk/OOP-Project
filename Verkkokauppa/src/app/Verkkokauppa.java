@@ -24,7 +24,8 @@ public class Verkkokauppa {
 		double yhteissumma;
 		int check = 1;
 //		int koritestaus;
-		String filename = "src/data/kuitti.txt";
+		String kuittitxt = "src/data/kuitti.txt";
+		String kuittihistoriatxt = "src/data/kuittihistoria.txt";
 
 		System.out.println("Tervetuloa Verkkokauppaan!");
 		System.out.println("Oletko asiakas vai yllĂ¤pito? (a/y)");
@@ -250,7 +251,7 @@ public class Verkkokauppa {
 
 						System.out.println("Koodi oikein! Saat 20% alennuksen ostostesi yhteissummasta!");
 
-						yhteissumma = yhteissumma * 0.80;
+						yhteissumma= yhteissumma * 0.80;
 						alennus = "-20 %";
 
 						System.out.printf("Ostostesi yhteissumma on nyt: %.2f €\r\n", yhteissumma);
@@ -295,10 +296,11 @@ public class Verkkokauppa {
 			
 			// kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
 			// ja sen jĂ¤lkeen tekstitiedoston tyhjennys
-			Asiakas.tulostaKoriTiedostoon(yhteissumma, filename, alennus);
+			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittitxt, alennus);
+			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittihistoriatxt, alennus);
 
-			System.out.println(Asiakas.tulostaKuittiKonsoliin(filename));
-			Asiakas.tyhjennaKuitti(filename);
+			System.out.println(Asiakas.tulostaKuittiKonsoliin(kuittitxt));
+			Asiakas.tyhjennaKuitti(kuittitxt);
 
 			
 			
