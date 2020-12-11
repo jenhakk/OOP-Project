@@ -19,8 +19,6 @@ public class Kayttaja {
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
 	ArrayList<Kori> ostoskori2 = new ArrayList<Kori>();
 
-	public String filename = "src/data/kuitti.txt";
-
 	protected String nimi;
 	protected String kuvaus;
 	protected double hinta;
@@ -41,10 +39,10 @@ class Asiakas extends Kayttaja {
 	protected String sPosti;
 	protected String puhelin;
 	protected String osoite;
-	
-	private String[] tarvittavatAsiakasTiedot = {"Etunimi", "Sukunimi", "Sï¿½hkï¿½posti", "Puhelin", "Osoite"};
+
+	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "Sï¿½hkï¿½posti", "Puhelin", "Osoite" };
 	private String[] asiakasTiedot = new String[5];
-	
+
 	int i;
 
 	// Nï¿½yttï¿½ï¿½ asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
@@ -77,7 +75,8 @@ class Asiakas extends Kayttaja {
 
 	// Lista-ostoskorin sisï¿½ltï¿½
 	protected void naytaOstoskori() {
-		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(
+				"-----------------------------------------------------------------------------------------------------------------------------------------");
 		for (int i = 0; i < ostoskori.size(); i++)
 
 		{
@@ -94,35 +93,39 @@ class Asiakas extends Kayttaja {
 		try {
 			FileWriter fwriter = new FileWriter(filename, true);
 			java.util.Date date = new java.util.Date();
-			
+
 			fwriter.write("\r\n");
-			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\tVerkkokauppa Kuokka ja Nakki");
+			fwriter.write("\t\t\tVerkkokauppa Kuokka ja Nakki");
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\tTï¿½ssï¿½ kuitti ostoksistasi");
+			fwriter.write("\t\t\tTï¿½ssï¿½ kuitti ostoksistasi");
 			fwriter.write("\r\n\r\n");
 
 			for (int i = 0; i < ostoskori.size(); i++)
 
 			{
-				fwriter.write("\t\t\t" + ostoskori.get(i).nimi);
-				fwriter.write("\t");
-				String hinta = Double.toString(ostoskori.get(i).hinta);
-				fwriter.write(hinta);
-				fwriter.write(" ï¿½");
+
+				String hinta = String.format("%.2f", (ostoskori.get(i).hinta));
+				String kpl = Integer.toString(ostoskori.get(i).kappalemaara);
+
+				fwriter.write(String.format("\t\t\t%-15.15s %-6.7s %-1.1s %-1.1s %-2.3s%n", ostoskori.get(i).nimi,
+						hinta, "€", kpl, "kpl"));
+
 				fwriter.write("\r\n");
 
 			}
+
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t\tAlennus: " + alennus + "\r\n\r\n");
-			fwriter.write("\t\t\tYhteensï¿½: " + yhteensa + " ï¿½" );
+			fwriter.write("\t\t\t\tAlennus: " + alennus + "\r\n\r\n");
+			fwriter.write(String.format("\t\t\t\tYhteensä: %.2f € ", yhteensa));
 			fwriter.write("\r\n\r\n\r\n");
-			fwriter.write("\t\t" + date.toString());
+			fwriter.write("\t\t\t" + date.toString());
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
+			fwriter.write("\t\tKiitos kï¿½ynnistï¿½ ja tervetuloa uudelleen!");
 			fwriter.write("\r\n\r\n");
-			fwriter.write("\t\t'~,.,~'ï¿½~,.,~ï¿½'~,.,~'ï¿½~,.,~ï¿½");
+			fwriter.write("\t\t'~,.,~'‘~,.,~’'~,.,~'‘~,.,~’'~,.,~''~,.,~'");
+			fwriter.write("\r\n\r\n");
 			fwriter.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -166,81 +169,73 @@ class Asiakas extends Kayttaja {
 			e.printStackTrace();
 		}
 	}
-	
-	//Laskee ostosten yhteissumman ja palauttaa sen
-	public double laskeSumma()
-	{
-		
+
+	// Laskee ostosten yhteissumman ja palauttaa sen
+	public double laskeSumma() {
+
 		double summa = 0;
-		
+
 		for (int i = 0; i < ostoskori.size(); i++)
-			
+
 		{
 			summa = summa + (ostoskori.get(i).hinta) * (ostoskori.get(i).kappalemaara);
-		
+
 		}
-		
+
 		return summa;
 	}
-	
+
 	public String getTarvittavatAsiakasTiedot(int i) {
 		return tarvittavatAsiakasTiedot[i];
 	}
-	
+
 	public int getTarvittavatAsiakasTiedotLength() {
 		return tarvittavatAsiakasTiedot.length;
 	}
-	
+
 	public void setAsiakasTieto(int i, String tieto) {
 		asiakasTiedot[i] = tieto;
 	}
-	
+
 	public String getAsiakasTieto(int i) {
 		return asiakasTiedot[i];
 	}
-	
-	//poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)
-	public void poistaTuoteKorista(String poisto)
-	{
+
+	// poistaa ostoskorista Asiakkaan antaman tuotteen nimen perusteella (String)
+	public void poistaTuoteKorista(String poisto) {
 		Iterator<Kori> itr = ostoskori.iterator();
-		
+
 		while (itr.hasNext()) {
-			
-			 ostos = itr.next();
-			 
-			 if (ostos.nimi.equalsIgnoreCase(poisto)) {
-				 
-				 itr.remove();
-			 }
+
+			ostos = itr.next();
+
+			if (ostos.nimi.equalsIgnoreCase(poisto)) {
+
+				itr.remove();
+			}
 		}
-			
-		{
-			
-		
-		}
-			
-			
+
 	}
+
 	public String palautaTuotenro(String txt) {
 
 		String[] temp = txt.split(", ");
 		return temp[0];
 	}
+
 	public String palautaNimi(String txt) {
 
 		String[] temp = txt.split(", ");
 		return temp[1];
 	}
+
 	public String palautaHinta(String txt) {
 
 		String[] temp = txt.split(", ");
 		return temp[2];
 	}
-	
 
-	
 }
-	
 
 //************************************************************
 class Yllapito extends Asiakas {
@@ -294,9 +289,8 @@ class Yllapito extends Asiakas {
 		}
 		return "";
 	}
-	
-	protected void naytaTilaukset()
-	{
+
+	protected void naytaTilaukset() {
 		Tietokanta.tulostaTilaukset();
 	}
 }
