@@ -296,7 +296,8 @@ public class Verkkokauppa {
 				
 				// Jos ollaan maksutavan kohdalla
 				if(i == 5) {
-					if(vastaus.equals("Visa") || vastaus.equals("Klarna") || vastaus.equals("Pankki")) {
+					if(vastaus.equalsIgnoreCase("Visa") || vastaus.equalsIgnoreCase("Klarna") || vastaus.equalsIgnoreCase("Pankki")) {
+						vastaus = vastaus.substring(0, 1).toUpperCase() + vastaus.substring(1).toLowerCase();
 						Asiakas.setAsiakasTieto(i, vastaus);
 					} else {
 						i--;
