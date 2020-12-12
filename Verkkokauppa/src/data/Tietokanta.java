@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import app.Tuote;
-
 public class Tietokanta {
 
 	private static Connection connection = null;
@@ -62,7 +60,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		int id;
 		String nimi;
@@ -79,16 +77,20 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
-			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta â‚¬", "Kuvaus");
+			// Vastauksen käsittely
+			System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", "TuoteID", "Tuote", "Hinta €", "Kuvaus");
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
 				nimi = resultSet.getString("nimi");
 				kuvaus = resultSet.getString("kuvaus");
 				hinta = resultSet.getDouble("hinta");
+				String hintastr = String.format("%.2f", hinta);
+				
+				
 
-				System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", id, nimi, hinta, kuvaus);
+				System.out.printf("%-15.15s %-15.15s %-15.15s %-300.300s%n", id, nimi, hintastr, kuvaus);
+
 			}
 
 		} catch (Exception ex) {
@@ -96,23 +98,6 @@ public class Tietokanta {
 		} finally {
 			
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
@@ -124,9 +109,7 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
-
-		int id;
+		// Tietokannan taulun kentät tulostusta varten
 		String nimi;
 		String kuvaus;
 		double hinta;
@@ -141,7 +124,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
+			// Vastauksen käsittely
 			System.out.printf("%-10.10s %-10.10s %-10.10s%n", "Tuote", "Hinta (€)", "Kuvaus");
 
 			while (resultSet.next()) {
@@ -161,23 +144,6 @@ public class Tietokanta {
 			ex.printStackTrace();
 		} finally {
 			suljeYhteys(resultSet, statement, connection);
-			
-			/*Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 	}
 	//************************************************************
@@ -188,13 +154,12 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		int id;
 		String nimi;
-		String kuvaus;
 		double hinta;
-
+		
 		try {
 
 			// Luo MySQL-kysely
@@ -207,15 +172,17 @@ public class Tietokanta {
 
 			// Vastauksen kÃƒÂ¤sittely
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta");
+			System.out.printf("%-15.15s %-15.15s %-15.15s%n", "Tuotenro","Tuote","Hinta €");
 			
 
 			while (resultSet.next()) {
 				id = resultSet.getInt("tuoteID");
 				nimi = resultSet.getString("nimi");
 				hinta = resultSet.getDouble("hinta");
+				String hintastr = String.format("%.2f", hinta);
 
-				System.out.printf("%-15.15s %-15.15s %-15.15s%n", id, nimi, hinta);
+
+				System.out.printf("%-15.15s %-15.15s %-15.15s%n", id, nimi, hintastr);
 
 			}
 
@@ -223,23 +190,6 @@ public class Tietokanta {
 			ex.printStackTrace();
 		} finally {
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
@@ -251,10 +201,9 @@ public class Tietokanta {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 		int id;
 		String nimi;
-		String kuvaus;
 		double hinta;
 		String palautus = "";
 
@@ -268,7 +217,7 @@ public class Tietokanta {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
+			// Vastauksen käsittely
 
 			while (resultSet.next()) {
 		
@@ -283,38 +232,15 @@ public class Tietokanta {
 			ex.printStackTrace();
 		} finally {
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 		return palautus;
 	}
 	//************************************************************
-	//Yll�pito voi muuttaa tuotteen hintaa
+	//Yll�pito voi muuttaa tuotteen hintaa
 	public static void muutaHintaa(double h, int tuotenro) {
 
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
-
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
-		int id = tuotenro;
-		String nimi;
-		String kuvaus;
-		double hinta = h;
 
 		try {
 
@@ -331,34 +257,17 @@ public class Tietokanta {
 			ex.printStackTrace();
 		} finally {
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 	}
 	
 	//************************************************************
-	//Yll�pito voi lis�t� uuden tuotteen varastoon
+	//Ylläpito voi lisää uuden tuotteen varastoon
 	public static void lisaaUusiTuote(String n, String k, double h) {
 
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		String nimi = n;
 		String kuvaus = k;
@@ -379,27 +288,10 @@ public class Tietokanta {
 			ex.printStackTrace();
 		} finally {
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 	}
 	//************************************************************
-	public static int lisaaTilaus(String enimi, String snimi, String sposti, String puh, String ost, double yhteishinta) {
+	public static int lisaaTilaus(String enimi, String snimi, String sposti, String puh, String ost, double yhteishinta, String maksutapa) {
 		yhdistaTietokanta();
 		
 		int tilausID = 0;
@@ -409,8 +301,8 @@ public class Tietokanta {
 			// Luo MySQL-kysely
 			statement = connection.createStatement();
 
-			String queryInsert = "INSERT INTO ryhma1_tilaus (etunimi, sukunimi, sahkoposti, puhelin, osoite, yhteishinta)"
-					+ "VALUES ('"+enimi+"','"+snimi+"','"+sposti+"','"+puh+"','"+ost+"',"+yhteishinta+")";
+			String queryInsert = "INSERT INTO ryhma1_tilaus (etunimi, sukunimi, sahkoposti, puhelin, osoite, yhteishinta, maksutapa)"
+					+ "VALUES ('"+enimi+"','"+snimi+"','"+sposti+"','"+puh+"','"+ost+"',"+yhteishinta+",'"+maksutapa+"')";
 
 			// Suorita kysely
 			statement.execute(queryInsert, Statement.RETURN_GENERATED_KEYS);
@@ -423,26 +315,6 @@ public class Tietokanta {
 			ex.printStackTrace();
 		} finally {
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-					
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-					
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-					
-				}*/
 		}
 		
 		return tilausID;
@@ -467,26 +339,6 @@ public class Tietokanta {
 				ex.printStackTrace();
 			} finally {
 				suljeYhteys(resultSet, statement, connection);
-				
-				/* Sulje yhteys ja nollaa kyselyt
-				if (resultSet != null)
-					try {
-						resultSet.close();
-					} catch (SQLException ignore) {
-						
-					}
-				if (statement != null)
-					try {
-						statement.close();
-					} catch (SQLException ignore) {
-						
-					}
-				if (connection != null)
-					try {
-						connection.close();
-					} catch (SQLException ignore) {
-						
-					}*/
 			}
 	}
 	
@@ -501,12 +353,10 @@ public static void tulostaTilaukset() {
 		// Ota yhteys tietokantaan
 		yhdistaTietokanta();
 
-		// Tietokannan taulun kentÃƒÂ¤t tulostusta varten
+		// Tietokannan taulun kentät tulostusta varten
 
 		int id;
 		String nimi;
-		String kuvaus;
-		double hinta;
 		int tilausID;
 		int kpl;
 		String enimi;
@@ -523,7 +373,7 @@ public static void tulostaTilaukset() {
 			// Suorita kysely
 			resultSet = statement.executeQuery(querySelect);
 
-			// Vastauksen kÃƒÂ¤sittely
+			// Vastauksen käsittely
 			System.out.printf("%-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s %-15.15s%n", "TilausID", "Pvm", "Sukunimi", "Etunimi", "Tuote", "TuoteID","kpl");
 
 			while (resultSet.next()) {
@@ -540,25 +390,7 @@ public static void tulostaTilaukset() {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			
 			suljeYhteys(resultSet, statement, connection);
-			
-			/* Sulje yhteys ja nollaa kyselyt
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (SQLException ignore) {
-				}
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (SQLException ignore) {
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (SQLException ignore) {
-				}*/
 		}
 		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------");
 	}
