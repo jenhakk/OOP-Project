@@ -6,7 +6,6 @@ public class Tuote {
 	protected String nimi;
 	protected String kuvaus;
 	protected double hinta;
-	protected int tuotenro;
 	protected int kappalemaara;
 	
 
@@ -15,33 +14,33 @@ public class Tuote {
 		nimi = "";
 		kuvaus = "";
 		hinta = 0;
-		tuotenro = 0;
+		
 	}
 	
-	public Tuote(String n, String k, double h, int t) {
+	public Tuote(String n, String k, double h) {
 		
 		nimi = n;
 		kuvaus = k;
 		hinta = h;
-		tuotenro = t;
+		
 	}
 	
 	public void tulostaTiedot() {
 		
 		System.out.println("Nimi: " + nimi);
-		//System.out.println("Kuvaus: " + kuvaus);
-		System.out.printf("Hinta: %.2f €", hinta);
-		//System.out.println("Tuote nro: " + tuotenro);
-		System.out.println("kappalemäärä: " + kappalemaara);
+		System.out.printf("Hinta: %.2f € ", hinta);
+		System.out.println("");
+		System.out.println("Kappalemäärä: " + kappalemaara);
 	}
 	
 }
 class Kori extends Tuote {
 	
+	protected int tuotenro;
+	
 	public Kori()
 	{
 		nimi = "";
-		kuvaus = "";
 		hinta = 0;
 		tuotenro = 0;
 		kappalemaara = 0;
@@ -51,9 +50,17 @@ class Kori extends Tuote {
 		
 		tuotenro = t;
 		nimi = n;
-		hinta = h;
+		hinta = h;	
 		kappalemaara = k;
 	}
+//	@Override
+//public void tulostaTiedot() {
+//		
+//		System.out.println("Nimi: " + nimi);
+//		System.out.printf("Hinta: %.2f € ", hinta);
+//		System.out.println("Tuote nro: " + tuotenro);
+//		System.out.println("kappalemäärä: " + kappalemaara);
+//	}
 }
 
 

@@ -2,8 +2,6 @@ package app;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import data.*;
 
@@ -23,7 +21,6 @@ public class Verkkokauppa {
 		int tuotenro = 0;
 		double yhteissumma;
 		int check = 1;
-//		int koritestaus;
 		String kuittitxt = "src/data/kuitti.txt";
 		String kuittihistoriatxt = "src/data/kuittihistoria.txt";
 
@@ -51,7 +48,7 @@ public class Verkkokauppa {
 			Asiakas.tulostaTuotelista();
 
 			do {
-				//Asiakas voi tuotenumeron perusteella tarkastella tuotetta tarkemmin tai lisï¿½tï¿½ ostoskoriin
+				//Asiakas voi tuotenumeron perusteella tarkastella tuotetta tarkemmin tai lisätä ostoskoriin
 				do {
 					do {
 						System.out.println("Anna tuotteen tuotenumero lisätäksesi tuote ostoskoriin: ");
@@ -91,7 +88,6 @@ public class Verkkokauppa {
 						}
 				} while (check == 0);
 
-//					koritestaus = vastausint;
 				
 				//Tuotteen tiedot String-muodossa > erotellaan oikeiksi muuttujiksi
 				String teksti = Asiakas.naytaTuotteenTiedot(vastausint);
@@ -99,7 +95,7 @@ public class Verkkokauppa {
 				String tuote = Asiakas.palautaNimi(teksti);
 				double hintaDbl = Double.parseDouble(Asiakas.palautaHinta(teksti));
 				
-				//Kappalemï¿½ï¿½rï¿½n kysely
+				//Kappalemäärä kysely
 				System.out.println("Montako kappaletta haluat?");
 				do {
 					vastaus = input.nextLine();
@@ -117,23 +113,6 @@ public class Verkkokauppa {
 				//Luodaan ostoskoriolio, johon tuotteet luetaan
 				Kori ostos = new Kori(tuoteID, tuote, hintaDbl, kappalemaara);
 				Asiakas.ostoskori.add(ostos);
-//					Kori ostos2 = new Kori(tuoteID, tuote, hintaDbl, kappalemaara);
-//					for (int i = 0; i < Asiakas.ostoskori.size(); i++) {
-//						if (Asiakas.ostoskori.get(i).tuotenro == koritestaus){
-//						Asiakas.ostoskori2.add(ostos);
-//						}
-//					}
-
-//					System.out.println("AAAAAA " + vastausint);
-//					for(int i = 0; i < Asiakas.ostoskori.size(); i++) {
-//                        if(Asiakas.ostoskori.get(i).tuotenro == vastausint) {
-//                            System.out.println("Tuote on jo ostoskorissa");
-//                        }
-//                        else {
-//                        	Kori ostos = new Kori(tuoteID, tuote, hintaDbl, kappalemaara);
-//        					Asiakas.ostoskori.add(ostos);
-//                        }
-//                    }
 
 				System.out.println("Voit lisätä uuden tuotteen ostoskoriin valitsemalla (k)");
 				System.out.println("Voit siirtyä ostoskoriin valitsemalla (o)");
@@ -142,7 +121,7 @@ public class Verkkokauppa {
 				do {
 					vastaus = input.nextLine();
 					
-					//Asiakas voi tarkastella ostoskorin sisï¿½ltï¿½ï¿½ valitsemalla "o", kori tulostetaan
+					//Asiakas voi tarkastella ostoskorin sisältää valitsemalla "o", kori tulostetaan
 					if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("o"))
 							&& (!vastaus.equalsIgnoreCase("t"))) {
 						System.out.println("Virheellinen syöte, yritä uudelleen.");
@@ -150,7 +129,7 @@ public class Verkkokauppa {
 					}
 					if (vastaus.equalsIgnoreCase("o")) {
 						do {
-							System.out.println("Ostoskorisi sisltää:");
+							System.out.println("Ostoskorisi sisältää:");
 							System.out.println("");
 							Asiakas.naytaOstoskori();
 							System.out.println("Jos haluat lisätä uuden tuotteen ostoskoriin, valitse (k)");
@@ -160,7 +139,7 @@ public class Verkkokauppa {
 							vastaus = input.nextLine();
 							if (!vastaus.equalsIgnoreCase("k") && (!vastaus.equalsIgnoreCase("e"))
 									&& (!vastaus.equalsIgnoreCase("p"))) {
-								System.out.println("Virheellinen syote, yrita uudelleen.");
+								System.out.println("Virheellinen syöte, yritä uudelleen.");
 							}
 							
 							//Asiakas voi poistaa korista tuotteen kirjoittamalla poistettavan tuotteen nimen
@@ -173,7 +152,7 @@ public class Verkkokauppa {
 						} while (!vastaus.equalsIgnoreCase("e") && !vastaus.equalsIgnoreCase("k"));
 
 					}
-						//Jos asiakas kirjoittaa "t", hï¿½n voi tarkastella tiettyï¿½ tuotetta tarkemmin
+						//Jos asiakas kirjoittaa "t", hän voi tarkastella tiettyä tuotetta tarkemmin
 					if (vastaus.equalsIgnoreCase("t")) {
 						System.out.println("Anna tuotteen tuotenumero:");
 
@@ -184,7 +163,7 @@ public class Verkkokauppa {
 								vastausint = Integer.parseInt(input.nextLine());
 							} catch (Exception e) {
 								check = 0;
-								System.out.println("Virheellinen syote, yrita uudelleen.");
+								System.out.println("Virheellinen syöte, yritä uudelleen.");
 							}
 						} while (check == 0);
 						Asiakas.naytaTuotteenKuvaus(vastausint);
@@ -199,16 +178,9 @@ public class Verkkokauppa {
 			} while (vastaus.equalsIgnoreCase("k"));
 
 			System.out.println("Lopullinen ostoskorisi: ");
-
-//			for(int i = 0; i < Asiakas.ostoskori.size(); i++) {
-//                if (Asiakas.ostoskori.get(i).tuotenro == Asiakas.ostoskori2.get(i).tuotenro) {
-//                	int maara = Asiakas.ostoskori.get(i).kappalemaara + Asiakas.ostoskori2.get(i).kappalemaara;
-//                	System.out.println("AAAAAAAAAAAAA    " + (maara));
-//                }
-//            }
 			
-			//Kï¿½ydï¿½ï¿½n ostoskori lï¿½pi, mikï¿½li samaa tuotetta on lisï¿½tty moneen kertaan, duplikaatit poistetaan
-			//ja kpl-mï¿½ï¿½rï¿½t lasketaan yhteen
+			//Käydään ostoskori läpi, mikäli samaa tuotetta on lisätty moneen kertaan, duplikaatit poistetaan
+			//ja kpl-määrät lasketaan yhteen
 			for (int i = 0; i < Asiakas.ostoskori.size(); i++) {
 				for (int j = i + 1; j < Asiakas.ostoskori.size(); j++) {
 					if (Asiakas.ostoskori.get(i).tuotenro == Asiakas.ostoskori.get(j).tuotenro) {
@@ -232,7 +204,7 @@ public class Verkkokauppa {
 			do {
 				vastaus = input.nextLine();
 				if (!vastaus.equalsIgnoreCase("k") && !vastaus.equalsIgnoreCase("e")) {
-					System.out.println("Virheellinen syote, yrita uudelleen.");
+					System.out.println("Virheellinen syöte, yritä uudelleen.");
 				}
 				} while (!vastaus.equalsIgnoreCase("k") && !vastaus.equalsIgnoreCase("e"));
 			
@@ -296,7 +268,8 @@ public class Verkkokauppa {
 				
 				// Jos ollaan maksutavan kohdalla
 				if(i == 5) {
-					if(vastaus.equals("Visa") || vastaus.equals("Klarna") || vastaus.equals("Pankki")) {
+					if(vastaus.equalsIgnoreCase("Visa") || vastaus.equalsIgnoreCase("Klarna") || vastaus.equalsIgnoreCase("Pankki")) {
+						vastaus = vastaus.substring(0, 1).toUpperCase() + vastaus.substring(1).toLowerCase();
 						Asiakas.setAsiakasTieto(i, vastaus);
 					} else {
 						i--;
@@ -321,7 +294,7 @@ public class Verkkokauppa {
 			System.out.println("Kiitos käynnistä!");
 			
 			// kuitin tulostus tekstitiedostoon, kuitin tiedostosta tulostus konsoliin
-			// ja sen jÄ‚Â¤lkeen tekstitiedoston tyhjennys
+			// ja sen jälkeen tekstitiedoston tyhjennys
 			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittitxt, alennus, maksutapa);
 			Asiakas.tulostaKoriTiedostoon(yhteissumma, kuittihistoriatxt, alennus, maksutapa);
 
@@ -419,7 +392,7 @@ public class Verkkokauppa {
 			System.out.println("Uloskirjautuminen onnistui. Nähdään seuraavalla kerralla!");
 
 		}
-
+		input.close();
 	}
 
 }

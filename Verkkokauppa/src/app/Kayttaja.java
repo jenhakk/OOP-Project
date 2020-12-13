@@ -13,11 +13,9 @@ import data.*;
 
 public class Kayttaja {
 
-	// Listat varastolle ja ostoskorille
+	// Lista ostoskorille
 
-	ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
 	ArrayList<Kori> ostoskori = new ArrayList<Kori>();
-	ArrayList<Kori> ostoskori2 = new ArrayList<Kori>();
 
 	protected String nimi;
 	protected String kuvaus;
@@ -25,9 +23,7 @@ public class Kayttaja {
 	protected int tuotenro;
 	protected int kappalemaara;
 
-	// private int kpl;
-
-	Tuote tuote = new Tuote(nimi, kuvaus, hinta, tuotenro);
+	Tuote tuote = new Tuote(nimi, kuvaus, hinta);
 	Kori ostos = new Kori(tuotenro, nimi, hinta, kappalemaara);
 }
 
@@ -40,12 +36,13 @@ class Asiakas extends Kayttaja {
 	protected String puhelin;
 	protected String osoite;
 
-	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite", "Maksutapa (Visa, Klarna, Pankki)" };
+	private String[] tarvittavatAsiakasTiedot = { "Etunimi", "Sukunimi", "Sähköposti", "Puhelin", "Osoite",
+			"Maksutapa (Visa, Klarna, Pankki)" };
 	private String[] asiakasTiedot = new String[6];
 
 	int i;
 
-	// Näyttää asiakkaalle yksittï¿½isen tuotteen nimen ja hinnan, palauttaa
+	// Näyttää asiakkaalle yksittäisen tuotteen nimen ja hinnan, palauttaa
 	// stringinä
 	protected String naytaTuotteenTiedot(int tuotenro)
 
@@ -66,7 +63,7 @@ class Asiakas extends Kayttaja {
 		Tietokanta.naytaTuotelista();
 	}
 
-	// LisÃ¤Ã¤ tuotteen ostoskoriin
+	// Lisää tuotteen ostoskoriin
 	protected void lisaaTuoteKoriin()
 
 	{
@@ -156,7 +153,7 @@ class Asiakas extends Kayttaja {
 		return alltext;
 	}
 
-	// tyhjentï¿½ï¿½ tekstitiedoston
+	// tyhjentää tekstitiedoston
 	protected void tyhjennaKuitti(String filename) {
 
 		try {
