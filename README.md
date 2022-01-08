@@ -34,7 +34,7 @@ We decided to code a webstore where there is customers section and stock section
 
 
 
-My responsibility was to make the Kayttaja.java where Kayttaja (User) class is created with all of its attributes and methods. There are also Asiakas (Customer) class that extends from Kayttaja and Yllapito (Admin) that extends from Asiakas. I also made Kuitti.java file that has only the class Kuitti (Receipt) since all methods are in Kayttaja.java. The main program Verkkokauppa.java was made in collaboration with other students but was mainly programmed by Juho. Nuutti created databases and programmed Tietokanta.java and Tuote.java. I also did some codes for Tietokanta.java.
+My responsibility was to make the [Kayttaja.java](https://github.com/jenhakk/OOP-Project/blob/master/Verkkokauppa/src/app/Kayttaja.java) where Kayttaja (User) class is created with all of its attributes and methods. There are also Asiakas (Customer) class that extends from Kayttaja and Yllapito (Admin) that extends from Asiakas. I also made Kuitti.java file that has only the class Kuitti (Receipt) since all methods are in Kayttaja.java. The main program Verkkokauppa.java was made in collaboration with other students but was mainly programmed by Juho. Nuutti created databases and programmed Tietokanta.java and Tuote.java. I also did some codes for Tietokanta.java.
 
 
 
